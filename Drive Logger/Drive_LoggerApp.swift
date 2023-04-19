@@ -6,15 +6,16 @@
 //
 
 import SwiftUI
-
 @main
 struct Drive_LoggerApp: App {
-    let persistenceController = PersistenceController.shared
-
+    @StateObject private var dataController = DataController()
+    
+    //let persistenceController = PersistenceController.shared
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            MainView()
+                .environment(\.managedObjectContext, dataController.container.viewContext)
         }
     }
 }
