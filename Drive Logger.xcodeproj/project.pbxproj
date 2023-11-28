@@ -12,7 +12,6 @@
 		921C1D5B2928334B00FCC373 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 921C1D5A2928334B00FCC373 /* Preview Assets.xcassets */; };
 		921C1D6A2928334C00FCC373 /* Drive_LoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921C1D692928334C00FCC373 /* Drive_LoggerTests.swift */; };
 		921C1D762928334C00FCC373 /* Drive_LoggerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921C1D752928334C00FCC373 /* Drive_LoggerUITestsLaunchTests.swift */; };
-		923615CF292AA93B0097B9B1 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923615CE292AA93B0097B9B1 /* LaunchScreen.swift */; };
 		923615D3292ABD1E0097B9B1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923615D2292ABD1E0097B9B1 /* MainView.swift */; };
 		923615D6292E9E010097B9B1 /* DriveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923615D5292E9E010097B9B1 /* DriveView.swift */; };
 		9263EB14293FD44E00AC8EC3 /* DriveModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9263EB12293FD44E00AC8EC3 /* DriveModel.xcdatamodeld */; };
@@ -53,7 +52,6 @@
 		921C1D692928334C00FCC373 /* Drive_LoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive_LoggerTests.swift; sourceTree = "<group>"; };
 		921C1D6F2928334C00FCC373 /* Drive LoggerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Drive LoggerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		921C1D752928334C00FCC373 /* Drive_LoggerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive_LoggerUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		923615CE292AA93B0097B9B1 /* LaunchScreen.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; tabWidth = 4; wrapsLines = 1; };
 		923615D2292ABD1E0097B9B1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		923615D4292E530A0097B9B1 /* Drive-Logger-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Drive-Logger-Info.plist"; sourceTree = SOURCE_ROOT; };
 		923615D5292E9E010097B9B1 /* DriveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveView.swift; sourceTree = "<group>"; };
@@ -168,7 +166,6 @@
 		9263EB17293FDBEB00AC8EC3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				923615CE292AA93B0097B9B1 /* LaunchScreen.swift */,
 				923615D2292ABD1E0097B9B1 /* MainView.swift */,
 				923615D5292E9E010097B9B1 /* DriveView.swift */,
 				9263EB19294001A300AC8EC3 /* LoggedDrives.swift */,
@@ -242,7 +239,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1410;
-				LastUpgradeCheck = 1410;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					921C1D4F2928334A00FCC373 = {
 						CreatedOnToolsVersion = 14.1;
@@ -312,7 +309,6 @@
 				9263EB1A294001A300AC8EC3 /* LoggedDrives.swift in Sources */,
 				923615D3292ABD1E0097B9B1 /* MainView.swift in Sources */,
 				92692EF8293BD915008D38C7 /* AddDriveView.swift in Sources */,
-				923615CF292AA93B0097B9B1 /* LaunchScreen.swift in Sources */,
 				9263EB16293FD6D600AC8EC3 /* DataController.swift in Sources */,
 				9263EB14293FD44E00AC8EC3 /* DriveModel.xcdatamodeld in Sources */,
 				921C1D542928334A00FCC373 /* Drive_LoggerApp.swift in Sources */,
@@ -393,6 +389,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -453,6 +450,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -485,7 +483,7 @@
 				INFOPLIST_FILE = "Drive-Logger-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = lo;
+				INFOPLIST_KEY_UILaunchStoryboardName = "/Users/zach/Documents/Classes/F23/CIS622/Term Project/Drive Logger/Drive Logger/Assets.xcassets/logo.imageset/LauchScreen.png";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -514,7 +512,7 @@
 				INFOPLIST_FILE = "Drive-Logger-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = lo;
+				INFOPLIST_KEY_UILaunchStoryboardName = "/Users/zach/Documents/Classes/F23/CIS622/Term Project/Drive Logger/Drive Logger/Assets.xcassets/logo.imageset/LauchScreen.png";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
