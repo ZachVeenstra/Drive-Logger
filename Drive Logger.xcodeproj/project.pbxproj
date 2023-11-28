@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,7 @@
 		9263EB16293FD6D600AC8EC3 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9263EB15293FD6D600AC8EC3 /* DataController.swift */; };
 		9263EB1A294001A300AC8EC3 /* LoggedDrives.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9263EB19294001A300AC8EC3 /* LoggedDrives.swift */; };
 		92692EF8293BD915008D38C7 /* AddDriveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92692EF7293BD915008D38C7 /* AddDriveView.swift */; };
+		927E86072B167E6D0038E4AD /* ActionButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927E86062B167E6D0038E4AD /* ActionButtonStyle.swift */; };
 		92954A8829424AAB0047392C /* EditDriveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92954A8729424AAB0047392C /* EditDriveView.swift */; };
 		92A6629529F056BD00228064 /* MainView_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6629429F056BD00228064 /* MainView_UITests.swift */; };
 		92A6629729F0575B00228064 /* DriveView_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6629629F0575B00228064 /* DriveView_UITests.swift */; };
@@ -59,6 +60,7 @@
 		9263EB15293FD6D600AC8EC3 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		9263EB19294001A300AC8EC3 /* LoggedDrives.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedDrives.swift; sourceTree = "<group>"; };
 		92692EF7293BD915008D38C7 /* AddDriveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDriveView.swift; sourceTree = "<group>"; };
+		927E86062B167E6D0038E4AD /* ActionButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtonStyle.swift; sourceTree = "<group>"; };
 		92954A8729424AAB0047392C /* EditDriveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDriveView.swift; sourceTree = "<group>"; };
 		92A6629429F056BD00228064 /* MainView_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView_UITests.swift; sourceTree = "<group>"; };
 		92A6629629F0575B00228064 /* DriveView_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveView_UITests.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 		921C1D522928334A00FCC373 /* Drive Logger */ = {
 			isa = PBXGroup;
 			children = (
+				927E86052B167E590038E4AD /* Components */,
 				921C1D532928334A00FCC373 /* Drive_LoggerApp.swift */,
 				923615D4292E530A0097B9B1 /* Drive-Logger-Info.plist */,
 				9263EB17293FDBEB00AC8EC3 /* Views */,
@@ -173,6 +176,14 @@
 				92954A8729424AAB0047392C /* EditDriveView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		927E86052B167E590038E4AD /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				927E86062B167E6D0038E4AD /* ActionButtonStyle.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,7 +266,7 @@
 				};
 			};
 			buildConfigurationList = 921C1D4B2928334A00FCC373 /* Build configuration list for PBXProject "Drive Logger" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -307,6 +318,7 @@
 			files = (
 				92954A8829424AAB0047392C /* EditDriveView.swift in Sources */,
 				9263EB1A294001A300AC8EC3 /* LoggedDrives.swift in Sources */,
+				927E86072B167E6D0038E4AD /* ActionButtonStyle.swift in Sources */,
 				923615D3292ABD1E0097B9B1 /* MainView.swift in Sources */,
 				92692EF8293BD915008D38C7 /* AddDriveView.swift in Sources */,
 				9263EB16293FD6D600AC8EC3 /* DataController.swift in Sources */,
@@ -357,6 +369,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -418,6 +431,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
