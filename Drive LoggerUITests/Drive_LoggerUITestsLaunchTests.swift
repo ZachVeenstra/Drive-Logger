@@ -2,7 +2,7 @@
 //  Drive_LoggerUITestsLaunchTests.swift
 //  Drive LoggerUITests
 //
-//  Created by Zach Veenstra on 11/18/22.
+//  Created by Zach Veenstra
 //
 
 import XCTest

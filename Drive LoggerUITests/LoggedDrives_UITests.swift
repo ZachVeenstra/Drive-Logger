@@ -2,7 +2,7 @@
 //  LoggedDrives_UITests.swift
 //  Drive LoggerUITests
 //
-//  Created by Zach Veenstra on 4/19/23.
+//  Created by Zach Veenstra
 //
 
 import XCTest
@@ -53,17 +53,17 @@ final class LoggedDrives_UITests: XCTestCase {
         XCTAssert(text.exists)
     }
     
-    // Doesn't work
     func test_LoggedDrives_editButton_shouldShowDeleteButton() {
         // Given we are on the LoggedDrives view
         goToLoggedDrives()
+        logDrive()
         
         // When the edit button is tapped
         app.navigationBars["Logged Drives"]/*@START_MENU_TOKEN@*/.buttons["Edit"]/*[[".otherElements[\"Edit\"].buttons[\"Edit\"]",".buttons[\"Edit\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        let removeButton = app.collectionViews.cells.otherElements.containing(.image, identifier:"remove").element
         
         // Then the delete button should be shown
-        
-            // There is not way to reference the delete button...
+        XCTAssert(removeButton.exists)
     }
     
     //
@@ -77,11 +77,11 @@ final class LoggedDrives_UITests: XCTestCase {
         goToLoggedDrives()
         
         // When a logged drive is tapped
-        app.buttons["DriveElement"].firstMatch.tap()
-                
+        app.collectionViews/*@START_MENU_TOKEN@*/.buttons["DriveElementName-DriveElementTime"]/*[[".cells",".buttons[\"Drive on 4\/19\/23, 4:25 PM, 5hrs  0mins\"]",".buttons[\"DriveElementName-DriveElementTime\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch.tap()
+        let text = app.staticTexts["Edit Drive"]
         
         // Then we should be navigated to the EditDriveView
-        
+        XCTAssert(text.exists)
     }
 }
 
@@ -97,5 +97,11 @@ extension LoggedDrives_UITests {
     func goToAddDriveView() {
         goToLoggedDrives()
         app.navigationBars["Logged Drives"]/*@START_MENU_TOKEN@*/.buttons["Add drive"]/*[[".otherElements[\"Add drive\"].buttons[\"Add drive\"]",".buttons[\"Add drive\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+    }
+    
+    func logDrive() {
+        app.navigationBars["Logged Drives"].buttons["AddDriveButton"].tap()
+        
+        app.collectionViews.cells.buttons["SubmitButton"].tap()
     }
 }

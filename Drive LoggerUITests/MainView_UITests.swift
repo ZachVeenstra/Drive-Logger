@@ -2,7 +2,7 @@
 //  MainView_UITests.swift
 //  Drive LoggerUITests
 //
-//  Created by Zach Veenstra on 4/19/23.
+//  Created by Zach Veenstra
 //
 
 import XCTest
@@ -53,38 +53,40 @@ final class MainView_UITests: XCTestCase {
         XCTAssert(navBar.exists)
     }
     
-    //MARK: This test breaks the app. The app must be deleted before more tests are run
-    func broken_test_MainView_totalTime_shouldUpdateWhenDriveIsLogged() {
+    
+    func test_MainView_totalTime_shouldUpdateWhenDriveIsLogged() {
         
         // Given we are on the MainView with a given total hours
         app.navigationBars["Home"].staticTexts["Home"].tap()
-        app.staticTexts["0hrs  0mins"].tap()
-        
+        let originalTime = app.staticTexts["TotalTime"].label
+
         // When we add a drive
         app.buttons["Add Drive"].tap()
         app.navigationBars["Logged Drives"].buttons["AddDriveButton"].tap()
-        
-        let minutesSlider = app.sliders.firstMatch
-        
-        minutesSlider.adjust(toNormalizedSliderPosition: 0.1)
-        
+
+        let minutesSlider = app.sliders["MinutesSlider"]
+
+        minutesSlider.adjust(toNormalizedSliderPosition: getSliderValue(val: 5))
+
         app.collectionViews.cells.buttons["SubmitButton"].tap()
         app.navigationBars.firstMatch.buttons["Home"].tap()
-//        app.cells.buttons["SubmitButton"].tap()
-//        app.navigationBars.first.buttons.element(boundBy: 0).tap()
-        
-                        
-        let timeText = app.staticTexts["5hrs  0mins"]
-        
+
+
+        let newTime = app.staticTexts["TotalTime"].label
+
         // Then the total time should update
-        XCTAssert(timeText.exists)
+        XCTAssertNotEqual(originalTime, newTime)
                
     }
     
 }
 
 extension MainView_UITests {
-    func getMinutesSliderValue(val: Int) -> CGFloat {
+    func getSliderValue(val: CGFloat) -> CGFloat {
         return CGFloat((val - 0) / (59 - 0))
+    }
+    
+    func goToLoggedDrives() {
+        app.buttons["Add Drive"].tap()
     }
 }

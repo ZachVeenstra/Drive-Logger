@@ -2,7 +2,7 @@
 //  DriveView_UITests.swift
 //  Drive LoggerUITests
 //
-//  Created by Zach Veenstra on 4/19/23.
+//  Created by Zach Veenstra
 //
 
 import XCTest
@@ -69,27 +69,28 @@ final class DriveView_UITests: XCTestCase {
         
         // When the end drive button is tapped
         app.buttons["End Drive"].tap()
+        goToLoggedDrives()
+        let drive = app.buttons["DriveElementName-DriveElementTime"].firstMatch
         
         // Then the drive should be logged
-        
+        XCTAssert(drive.exists)
     }
     
     
-    // This test fails because when other tests run before it, they populate
-    // CoreData with logged drives
+    //MARK: This test may fail because when other tests run before it, they populate CoreData with logged drives
     func test_DriveView_homeButton_shouldNotLogDrive() {
         // Given we are on the DriveView
         goToDriveView()
         
         // When the home button is tapped
-        app.navigationBars["_TtGC7SwiftUI19UIHosting"].buttons["Home"].tap()
+        app.navigationBars.firstMatch.buttons["Home"].tap()
         app.buttons["Add Drive"].tap()
         
-        let element = app.navigationBars.firstMatch.buttons["Logged Drives"]
+        let drive = app.buttons["DriveElementName-DriveElementTime"].firstMatch
         
         
         // Then we should not log the drive
-        XCTAssert(!element.exists)
+        XCTAssert(!drive.exists)
     }
 }
 
