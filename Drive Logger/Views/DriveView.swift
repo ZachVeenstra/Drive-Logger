@@ -22,55 +22,41 @@ struct DriveView: View {
     
     // Learned how to use timer here: https://www.youtube.com/watch?v=kIaO4UtzBHI
     
+    // TODO: Make stopwatch work in background.
     private let stopWatch = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    private let SECONDS_IN_HOUR: Int32 = 3600
-    private let SECONDS_IN_MINUTE: Int32 = 60
+    private let secondsInHour: Int32 = 3600
+    private let secondsInMinute: Int32 = 60
     
     var body: some View {
-        ZStack{
-            VStack{
-                
-                Text(("\(currentSeconds/SECONDS_IN_HOUR):\(currentSeconds%SECONDS_IN_HOUR/SECONDS_IN_MINUTE):\(currentSeconds%SECONDS_IN_MINUTE)"))
-                    .padding(.bottom, 100.0)
-                    .onReceive(stopWatch) { _ in
-                        if timerRunning {
-                            currentSeconds += 1
-                        }
+        VStack(spacing: 100) {
+            Text("\(currentSeconds/secondsInHour):\(currentSeconds%secondsInHour/secondsInMinute):\(currentSeconds%secondsInMinute)")
+                .onReceive(stopWatch) { _ in
+                    if timerRunning {
+                        currentSeconds += 1
                     }
-                    .font(.largeTitle)
-                    .fontWeight(.semibold)
-                    .multilineTextAlignment(.center)
-                
-                
-                
-                
-                Button("End Drive") {
-                    timerRunning.toggle()
-                    let drive = Drive(context: managedObjContext)
-
-                    DataController().addDrive(drive: drive, name: name, duration: currentSeconds, distance: 0, context: managedObjContext)
-
-                    totalSeconds += Int(currentSeconds)
-
-                    dismiss()
                 }
-                    .frame(width: /*@START_MENU_TOKEN@*/150.0/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/75.0/*@END_MENU_TOKEN@*/)
-                    .foregroundColor(.white)
-                    .font(.title2)
-                    .fontWeight(.heavy)
-                    .background(Color.accentColor)
-                    .cornerRadius(20.0)
-                    .padding(.top, 100.0)
+                .font(.largeTitle)
+                .fontWeight(.semibold)
+            
+            Button("End Drive") {
+                // TODO: Factor out this logic.
+                timerRunning.toggle()
+                let drive = Drive(context: managedObjContext)
+
+                DataController().addDrive(drive: drive, name: name, duration: currentSeconds, distance: 0, context: managedObjContext)
+                totalSeconds += Int(currentSeconds)
+                dismiss()
             }
+            .buttonStyle(ActionButtonStyle())
         }
+        .fixedSize()
+        .navigationBarBackButtonHidden(true)
         .navigationTitle("Drive")
     }
-    
 }
 
-// Taken from XCode's default persistence controller
 private let dateFormatter: DateFormatter = {
-    let formatter = DateFormatter()
+    let formatter: DateFormatter = DateFormatter()
     formatter.dateStyle = .short
     formatter.timeStyle = .short
     return formatter
