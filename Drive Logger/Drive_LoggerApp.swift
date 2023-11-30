@@ -10,11 +10,9 @@ import SwiftUI
 struct Drive_LoggerApp: App {
     @StateObject private var dataController = DataController()
     
-    //let persistenceController = PersistenceController.shared
-    
     var body: some Scene {
         WindowGroup {
-            MainView()
+            HomeView()
                 .environment(\.managedObjectContext, dataController.container.viewContext)
         }
     }

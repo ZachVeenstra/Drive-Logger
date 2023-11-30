@@ -1,5 +1,5 @@
 //
-//  MainView_UITests.swift
+//  HomeView_UITests.swift
 //  Drive LoggerUITests
 //
 //  Created by Zach Veenstra
@@ -7,7 +7,7 @@
 
 import XCTest
 
-final class MainView_UITests: XCTestCase {
+final class HomeView_UITests: XCTestCase {
 
     let app = XCUIApplication()
     
@@ -27,9 +27,9 @@ final class MainView_UITests: XCTestCase {
     }
 
     
-    func test_MainView_startDriveButton_shouldStartDrive() {
+    func test_HomeView_startDriveButton_shouldStartDrive() {
         
-        // Given we are on the MainView
+        // Given we are on the HomeView
         app.navigationBars["Home"].staticTexts["Home"].tap()
         
         // When we tap start drive
@@ -40,9 +40,9 @@ final class MainView_UITests: XCTestCase {
         XCTAssert(navBar.exists)
     }
     
-    func test_MainView_addDriveButton_shouldNavigateToLoggedDrivesView() {
+    func test_HomeView_addDriveButton_shouldNavigateToLoggedDrivesView() {
         
-        // Given we are on the MainView
+        // Given we are on the HomeView
         app.navigationBars["Home"].staticTexts["Home"].tap()
         
         // When we tap add drive
@@ -54,9 +54,9 @@ final class MainView_UITests: XCTestCase {
     }
     
     
-    func test_MainView_totalTime_shouldUpdateWhenDriveIsLogged() {
+    func test_HomeView_totalTime_shouldUpdateWhenDriveIsLogged() {
         
-        // Given we are on the MainView with a given total hours
+        // Given we are on the HomeView with a given total hours
         app.navigationBars["Home"].staticTexts["Home"].tap()
         let originalTime = app.staticTexts["TotalTime"].label
 
@@ -81,7 +81,7 @@ final class MainView_UITests: XCTestCase {
     
 }
 
-extension MainView_UITests {
+extension HomeView_UITests {
     func getSliderValue(val: CGFloat) -> CGFloat {
         return CGFloat((val - 0) / (59 - 0))
     }

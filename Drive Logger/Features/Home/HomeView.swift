@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  HomeView.swift
 //  Drive Logger
 //
 //  Created by Zach Veenstra on 11/20/22.
@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreData
 
-struct MainView: View {
+struct HomeView: View {
     // Learned how to use UserDefaluts here: https://www.hackingwithswift.com/books/ios-swiftui/storing-user-settings-with-userdefaults
     
     // Stores the total amount of seconds the driver has driven
@@ -51,5 +51,5 @@ struct MainView: View {
 }
 
 #Preview {
-    MainView()
+    HomeView()
 }
