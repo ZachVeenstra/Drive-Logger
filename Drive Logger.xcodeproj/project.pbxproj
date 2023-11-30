@@ -25,6 +25,7 @@
 		92A6629929F057CD00228064 /* LoggedDrives_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6629829F057CD00228064 /* LoggedDrives_UITests.swift */; };
 		92A6629B29F0582200228064 /* AddDriveView_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6629A29F0582200228064 /* AddDriveView_UITests.swift */; };
 		92A6629D29F0588B00228064 /* EditDriveView_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6629C29F0588B00228064 /* EditDriveView_UITests.swift */; };
+		92DBE6EC2B1813B700D5C62B /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DBE6EB2B1813B700D5C62B /* TimePickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		92A6629829F057CD00228064 /* LoggedDrives_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedDrives_UITests.swift; sourceTree = "<group>"; };
 		92A6629A29F0582200228064 /* AddDriveView_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDriveView_UITests.swift; sourceTree = "<group>"; };
 		92A6629C29F0588B00228064 /* EditDriveView_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDriveView_UITests.swift; sourceTree = "<group>"; };
+		92DBE6EB2B1813B700D5C62B /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				927E86062B167E6D0038E4AD /* ActionButtonStyle.swift */,
+				92DBE6EB2B1813B700D5C62B /* TimePickerView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				92954A8829424AAB0047392C /* EditDriveView.swift in Sources */,
 				9263EB1A294001A300AC8EC3 /* LoggedDrives.swift in Sources */,
 				927E86072B167E6D0038E4AD /* ActionButtonStyle.swift in Sources */,
+				92DBE6EC2B1813B700D5C62B /* TimePickerView.swift in Sources */,
 				923615D3292ABD1E0097B9B1 /* MainView.swift in Sources */,
 				92692EF8293BD915008D38C7 /* AddDriveView.swift in Sources */,
 				9263EB16293FD6D600AC8EC3 /* DataController.swift in Sources */,
@@ -417,7 +421,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -473,7 +477,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

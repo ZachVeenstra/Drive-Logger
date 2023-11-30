@@ -13,9 +13,9 @@ struct AddDriveView: View {
     @Environment(\.managedObjectContext) var managedObjContext
     @Environment(\.dismiss) var dismiss
     @AppStorage("totalSeconds") private var totalSeconds: Int = 0
-    @State private var hours: Double = 0
-    @State private var minutes: Double = 0
-    @State private var seconds: Double = 0
+    @State private var hours: Int = 0
+    @State private var minutes: Int = 0
+    @State private var seconds: Int = 0
     @State private var date: Date = Date()
     @State private var name: String = "Drive on \(dateFormatter.string(from: Date()))"
     @State private var distance: String = "0"
@@ -29,10 +29,11 @@ struct AddDriveView: View {
         ZStack {
             VStack {
                 Form {
-                    Text("Add Drive")
                     Section {
                         Text("Drive Name")
                             .font(.title3)
+                            .fontWeight(.bold)
+                        
                         TextField("Name", text: $name)
                             .accessibilityIdentifier("NameField")
                     }
@@ -40,19 +41,20 @@ struct AddDriveView: View {
                     Section {
                         Text("Drive Duration")
                             .font(.title3)
-                        VStack() {
-                            Text("Hours: \(Int(hours))")
-                            Slider(value: $hours, in: 0...50).accessibilityIdentifier("HoursSlider")
-                            Text("Minutes: \(Int(minutes))")
-                            Slider(value: $minutes, in: 0...59).accessibilityIdentifier("MinutesSlider")
-                            Text("Seconds: \(Int(seconds))")
-                            Slider(value: $seconds, in: 0...59).accessibilityIdentifier("SecondsSlider")
+                            .fontWeight(.bold)
+                        
+                        HStack {
+                            TimePickerView(title: "hours", range: 0...23, selection: $hours)
+                            TimePickerView(title: "min", range: 0...59, selection: $minutes)
+                            TimePickerView(title: "sec", range: 0...59, selection: $seconds)
                         }
                     }
                                         
                     Section {
                         Text("Drive Distance")
                             .font(.title3)
+                            .fontWeight(.bold)
+                        
                         TextField("Distance", text: $distance)
                             .keyboardType(.numberPad)
                             .accessibilityIdentifier("DistanceField")
