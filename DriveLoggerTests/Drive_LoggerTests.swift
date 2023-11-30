@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import Drive_Logger
+@testable import DriveLogger
 
 final class Drive_LoggerTests: XCTestCase {
 
