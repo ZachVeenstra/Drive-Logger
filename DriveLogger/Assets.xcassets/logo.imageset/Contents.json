@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "Screenshot 2022-12-06 at 4.38.16 PM.png",
+      "filename" : "LauchScreen.png",
       "idiom" : "universal"
     },
     {
@@ -11,7 +11,7 @@
           "value" : "light"
         }
       ],
-      "filename" : "Screenshot 2022-12-06 at 4.38.16 PM 1.png",
+      "filename" : "LauchScreenLight.png",
       "idiom" : "universal"
     },
     {
@@ -21,7 +21,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "Screenshot 2022-12-06 at 4.38.43 PM.png",
+      "filename" : "LauchScreenDark.png",
       "idiom" : "universal"
     }
   ],

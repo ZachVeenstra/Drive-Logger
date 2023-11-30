@@ -1,5 +1,5 @@
 //
-//  Drive_LoggerUITestsLaunchTests.swift
+//  DriveLoggerUITestsLaunchTests.swift
 //  Drive LoggerUITests
 //
 //  Created by Zach Veenstra
@@ -7,7 +7,7 @@
 
 import XCTest
 
-final class Drive_LoggerUITestsLaunchTests: XCTestCase {
+final class DriveLoggerUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
