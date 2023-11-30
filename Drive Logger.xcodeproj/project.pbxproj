@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		921C1D542928334A00FCC373 /* DriveLoggerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921C1D532928334A00FCC373 /* DriveLoggerApp.swift */; };
 		921C1D582928334B00FCC373 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 921C1D572928334B00FCC373 /* Assets.xcassets */; };
-		921C1D6A2928334C00FCC373 /* Drive_LoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921C1D692928334C00FCC373 /* Drive_LoggerTests.swift */; };
+		921C1D6A2928334C00FCC373 /* DriveLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921C1D692928334C00FCC373 /* DriveLoggerTests.swift */; };
 		921C1D762928334C00FCC373 /* DriveLoggerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921C1D752928334C00FCC373 /* DriveLoggerUITestsLaunchTests.swift */; };
 		923615D3292ABD1E0097B9B1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923615D2292ABD1E0097B9B1 /* HomeView.swift */; };
 		923615D6292E9E010097B9B1 /* DriveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923615D5292E9E010097B9B1 /* DriveView.swift */; };
@@ -50,7 +50,7 @@
 		921C1D532928334A00FCC373 /* DriveLoggerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveLoggerApp.swift; sourceTree = "<group>"; };
 		921C1D572928334B00FCC373 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		921C1D652928334C00FCC373 /* DriveLoggerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DriveLoggerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		921C1D692928334C00FCC373 /* Drive_LoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive_LoggerTests.swift; sourceTree = "<group>"; };
+		921C1D692928334C00FCC373 /* DriveLoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveLoggerTests.swift; sourceTree = "<group>"; };
 		921C1D6F2928334C00FCC373 /* DriveLoggerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DriveLoggerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		921C1D752928334C00FCC373 /* DriveLoggerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveLoggerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		923615D2292ABD1E0097B9B1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 			children = (
 				921C1D522928334A00FCC373 /* DriveLogger */,
 				921C1D682928334C00FCC373 /* DriveLoggerTests */,
-				921C1D722928334C00FCC373 /* Drive LoggerUITests */,
+				921C1D722928334C00FCC373 /* DriveLoggerUITests */,
 				921C1D512928334A00FCC373 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -141,12 +141,12 @@
 		921C1D682928334C00FCC373 /* DriveLoggerTests */ = {
 			isa = PBXGroup;
 			children = (
-				921C1D692928334C00FCC373 /* Drive_LoggerTests.swift */,
+				921C1D692928334C00FCC373 /* DriveLoggerTests.swift */,
 			);
 			path = DriveLoggerTests;
 			sourceTree = "<group>";
 		};
-		921C1D722928334C00FCC373 /* Drive LoggerUITests */ = {
+		921C1D722928334C00FCC373 /* DriveLoggerUITests */ = {
 			isa = PBXGroup;
 			children = (
 				921C1D752928334C00FCC373 /* DriveLoggerUITestsLaunchTests.swift */,
@@ -156,7 +156,7 @@
 				92A6629A29F0582200228064 /* AddDriveView_UITests.swift */,
 				92A6629C29F0588B00228064 /* EditDriveView_UITests.swift */,
 			);
-			path = "Drive LoggerUITests";
+			path = DriveLoggerUITests;
 			sourceTree = "<group>";
 		};
 		9263EB11293FD40000AC8EC3 /* DataModel */ = {
@@ -368,7 +368,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				921C1D6A2928334C00FCC373 /* Drive_LoggerTests.swift in Sources */,
+				921C1D6A2928334C00FCC373 /* DriveLoggerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
