@@ -26,7 +26,6 @@ struct AddDriveView: View {
 
     
     var body: some View {
-        
         ZStack {
             VStack {
                 Form {
@@ -69,7 +68,8 @@ struct AddDriveView: View {
                         DataController().addDrive(drive: drive, name: name, duration: duration, distance: Double(distance) ?? 0, context: managedObjContext)
                         
                         dismiss()
-                    }.accessibilityIdentifier("SubmitButton")
+                    }
+                    .accessibilityIdentifier("SubmitButton")
                 }
             }
         }
