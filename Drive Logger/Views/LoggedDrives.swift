@@ -72,10 +72,6 @@ struct LoggedDrives: View {
     }
 }
 
-
-
-struct LoggedDrives_Previews: PreviewProvider {
-    static var previews: some View {
-        LoggedDrives()
-    }
+#Preview {
+    LoggedDrives()
 }

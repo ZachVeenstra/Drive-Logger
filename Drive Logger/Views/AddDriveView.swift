@@ -86,8 +86,6 @@ private let dateFormatter: DateFormatter = {
     return formatter
 }()
 
-struct AddDriveView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddDriveView()
-    }
+#Preview {
+    AddDriveView()
 }
