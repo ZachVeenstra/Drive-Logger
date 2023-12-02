@@ -9,14 +9,9 @@ import SwiftUI
 import CoreData
 
 struct HomeView: View {
-    // Learned how to use UserDefaluts here: https://www.hackingwithswift.com/books/ios-swiftui/storing-user-settings-with-userdefaults
-    
-    // Stores the total amount of seconds the driver has driven
-    @AppStorage("totalSeconds") private var totalSeconds: Int = 0
-    
-    private let SECONDS_IN_HOUR: Int = 3600
-    private let SECONDS_IN_MINUTE: Int = 60
 
+    @StateObject private var homeModel = HomeModel()
+    
     var body: some View {
         NavigationStack{
             VStack {
@@ -24,7 +19,7 @@ struct HomeView: View {
                     Text("Total Hours")
                         .fontWeight(.bold)
                     
-                    Text("\(totalSeconds / SECONDS_IN_HOUR)hrs  \(totalSeconds % SECONDS_IN_HOUR / SECONDS_IN_MINUTE)mins")
+                    Text("\(homeModel.getHours())hrs  \(homeModel.getMinutes())mins")
                         .fontWeight(.semibold)
                         .accessibilityIdentifier("TotalTime")
                 }
