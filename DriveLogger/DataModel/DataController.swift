@@ -7,11 +7,13 @@
 // This video was helpful with learning how to save entities using Core Data https://www.youtube.com/watch?v=O0FSDNOXCl0
 import Foundation
 import CoreData
+import SwiftUI
 
 class DataController: ObservableObject {
     
     let container = NSPersistentContainer(name: "DriveModel")
     
+    static let shared = DataController()
     
     init() {
         container.loadPersistentStores { desc, error in
@@ -28,6 +30,16 @@ class DataController: ObservableObject {
         } catch {
             print("The drive could not be saved")
         }
+    }
+    
+    func getTotalTime(context: NSManagedObjectContext) -> Int32 {
+        var totalTime: Int32 = 0
+        
+        for drive in context.registeredObjects {
+            totalTime += drive.value(forKey: "duration") as! Int32
+        }
+        
+        return totalTime
     }
     
     func addDrive(drive: Drive, name: String, duration: Int32, distance: Double, context: NSManagedObjectContext) {
