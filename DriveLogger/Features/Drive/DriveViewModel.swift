@@ -38,12 +38,6 @@ class DriveViewModel: ObservableObject {
         return "Drive on \(dateFormatter.string(from: Date()))"
     }
     
-//    func endDrive() -> Void {
-//        let drive = Drive(context: moc)
-//
-//        DataController().addDrive(drive: drive, name: getName(), duration: Int32(secondsElapsed), distance: 0, context: moc)
-//    }
-    
     private func getHours() -> Int {
         return self.secondsElapsed / secondsInHour
     }

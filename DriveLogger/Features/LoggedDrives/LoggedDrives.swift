@@ -10,29 +10,25 @@ import CoreData
 
 struct LoggedDrives: View {
     @AppStorage("totalSeconds") private var totalSeconds: Int = 0
-    @Environment(\.managedObjectContext) var managedObjContext
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var drive: FetchedResults<Drive>
+    @StateObject private var drivesViewModel = DrivesViewModel()
+    @Environment(\.managedObjectContext) var moc
     @Environment(\.dismiss) var dismiss
     
     @State private var addViewShowing = false
-    
-    private let SECONDS_IN_HOUR: Int32 = 3600
-    private let SECONDS_IN_MINUTE: Int32 = 60
     
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
                 List {
-                    ForEach(drive) { drive in
-                        NavigationLink(destination: EditDriveView(drive: drive)) {
+                    ForEach(drivesViewModel.drives) { drive in
+                        NavigationLink(destination: AddDriveView(drive: drive)) {
                             HStack{
                                 VStack(alignment: .leading, spacing: 6) {
                                     Text(drive.name!)
                                         .bold()
                                         .accessibilityIdentifier("DriveElementName")
                                     
-                                    // Derives the hours and minutes from the duration of the drive in seconds.
-                                    Text("\(drive.duration / SECONDS_IN_HOUR)hrs  \(drive.duration % SECONDS_IN_HOUR / SECONDS_IN_MINUTE)mins")
+                                    Text("\(drive.hours)hrs  \(drive.minutes)mins")
                                         .accessibilityIdentifier("DriveElementTime")
                                 }
                             }
@@ -63,11 +59,9 @@ struct LoggedDrives: View {
     }
     private func deleteDrive(offsets: IndexSet) {
         withAnimation {
-            offsets.map { drive[$0]}.forEach {drive in
-                totalSeconds -= Int(drive.duration)
-                managedObjContext.delete(drive)
+            offsets.map { drivesViewModel.drives[$0]}.forEach {drive in
+                drivesViewModel.deleteDrive(moc: moc, drive: drive)
             }
-                DataController().saveDrive(context: managedObjContext)
         }
     }
 }

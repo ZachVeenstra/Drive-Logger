@@ -12,6 +12,7 @@ struct DriveView: View {
     @AppStorage("totalSeconds") private var totalSeconds: Int = 0
     @Environment(\.managedObjectContext) var moc
     @Environment(\.dismiss) private var dismiss
+    @StateObject private var drivesViewModel = DrivesViewModel()
     @StateObject private var driveViewModel = DriveViewModel()
     
     var body: some View {
@@ -32,9 +33,7 @@ struct DriveView: View {
     }
     
     func endDrive() -> Void {
-        let drive = Drive(context: moc)
-
-        DataController().addDrive(drive: drive, name: driveViewModel.getName(), duration: Int32(driveViewModel.secondsElapsed), distance: 0, context: moc)
+        drivesViewModel.createDrive(moc: moc, name: driveViewModel.getName(), duration: Int32(driveViewModel.secondsElapsed), distance: 0)
         totalSeconds += driveViewModel.secondsElapsed
     }
 }
