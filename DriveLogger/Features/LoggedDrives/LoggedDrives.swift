@@ -15,22 +15,11 @@ struct LoggedDrives: View {
     @State private var addViewShowing = false
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(alignment: .leading) {
                 List {
                     ForEach(drivesDataModel.drives) { drive in
-                        NavigationLink(destination: AddDriveView(drive: drive)) {
-                            HStack{
-                                VStack(alignment: .leading, spacing: 6) {
-                                    Text(drive.name!)
-                                        .bold()
-                                        .accessibilityIdentifier("DriveElementName")
-                                    
-                                    Text("\(drive.hours)hrs  \(drive.minutes)mins")
-                                        .accessibilityIdentifier("DriveElementTime")
-                                }
-                            }
-                        }
+                        LoggedDriveItemView(drive: drive)
                     }
                     .onDelete(perform: deleteDrive)
                 }

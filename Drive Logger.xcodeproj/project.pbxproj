@@ -11,6 +11,7 @@
 		921C1D582928334B00FCC373 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 921C1D572928334B00FCC373 /* Assets.xcassets */; };
 		921C1D6A2928334C00FCC373 /* DriveLoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921C1D692928334C00FCC373 /* DriveLoggerTests.swift */; };
 		921C1D762928334C00FCC373 /* DriveLoggerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921C1D752928334C00FCC373 /* DriveLoggerUITestsLaunchTests.swift */; };
+		92244B832B1FEDF700BE5D80 /* LoggedDriveItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92244B822B1FEDF700BE5D80 /* LoggedDriveItemView.swift */; };
 		923615D3292ABD1E0097B9B1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923615D2292ABD1E0097B9B1 /* HomeView.swift */; };
 		923615D6292E9E010097B9B1 /* DriveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923615D5292E9E010097B9B1 /* DriveView.swift */; };
 		9263EB14293FD44E00AC8EC3 /* DriveModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9263EB12293FD44E00AC8EC3 /* DriveModel.xcdatamodeld */; };
@@ -55,6 +56,7 @@
 		921C1D692928334C00FCC373 /* DriveLoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveLoggerTests.swift; sourceTree = "<group>"; };
 		921C1D6F2928334C00FCC373 /* DriveLoggerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DriveLoggerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		921C1D752928334C00FCC373 /* DriveLoggerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveLoggerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		92244B822B1FEDF700BE5D80 /* LoggedDriveItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedDriveItemView.swift; sourceTree = "<group>"; };
 		923615D2292ABD1E0097B9B1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		923615D4292E530A0097B9B1 /* Drive-Logger-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Drive-Logger-Info.plist"; sourceTree = SOURCE_ROOT; };
 		923615D5292E9E010097B9B1 /* DriveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveView.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				9263EB19294001A300AC8EC3 /* LoggedDrives.swift */,
+				92244B822B1FEDF700BE5D80 /* LoggedDriveItemView.swift */,
 			);
 			path = LoggedDrives;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 				92692EF8293BD915008D38C7 /* AddDriveView.swift in Sources */,
 				92B4C5C52B1EC47E009E23D2 /* DrivesDataModel.swift in Sources */,
 				9263EB16293FD6D600AC8EC3 /* DataController.swift in Sources */,
+				92244B832B1FEDF700BE5D80 /* LoggedDriveItemView.swift in Sources */,
 				9263EB14293FD44E00AC8EC3 /* DriveModel.xcdatamodeld in Sources */,
 				921C1D542928334A00FCC373 /* DriveLoggerApp.swift in Sources */,
 				929253692B1BB06700CB0988 /* DriveViewModel.swift in Sources */,
