@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/zach/Documents/Classes/F23/CIS622/TermProject/DriveLogger/Drive Logger.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>

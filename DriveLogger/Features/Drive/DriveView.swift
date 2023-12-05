@@ -10,10 +10,11 @@ import SwiftUI
 struct DriveView: View {
     
     @AppStorage("totalSeconds") private var totalSeconds: Int = 0
-    @Environment(\.managedObjectContext) var moc
+//    @Environment(\.managedObjectContext) var moc
     @Environment(\.dismiss) private var dismiss
-    @StateObject private var drivesViewModel = DrivesViewModel()
+//    @StateObject private var drivesViewModel = DrivesViewModel()
     @StateObject private var driveViewModel = DriveViewModel()
+    @EnvironmentObject private var drivesViewModel: DrivesViewModel
     
     var body: some View {
         VStack(spacing: 100) {
@@ -33,7 +34,7 @@ struct DriveView: View {
     }
     
     func endDrive() -> Void {
-        drivesViewModel.createDrive(moc: moc, name: driveViewModel.getName(), duration: Int32(driveViewModel.secondsElapsed), distance: 0)
+        drivesViewModel.createDrive(name: driveViewModel.getName(), duration: Int32(driveViewModel.secondsElapsed), distance: 0)
         totalSeconds += driveViewModel.secondsElapsed
     }
 }

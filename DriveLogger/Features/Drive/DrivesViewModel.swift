@@ -12,19 +12,18 @@ import SwiftUI
 
 class DrivesViewModel: ObservableObject {
     
-    let container = NSPersistentContainer(name: "DriveModel")
+//    let container = NSPersistentContainer(name: "DriveModel")
+    let moc: NSManagedObjectContext
     
     private let secondsInHour: Int = 3600
     private let secondsInMinute: Int = 60
     
     @Published var drives: [Drive] = []
 
-    init() {
-        container.loadPersistentStores { desc, error in
-            if let error = error {
-                print("Failed to load data \(error.localizedDescription)")
-            }
-        }
+    init(moc: NSManagedObjectContext) {
+        self.moc = moc
+        
+        fetchData(moc: moc)
     }
 
     func fetchData(moc: NSManagedObjectContext) {
@@ -34,7 +33,7 @@ class DrivesViewModel: ObservableObject {
         }
     }
 
-    func createDrive(moc: NSManagedObjectContext, name: String, duration: Int32, distance: Double) {
+    func createDrive(name: String, duration: Int32, distance: Double) {
         let drive = Drive(context: moc)
         drive.id = UUID()
         drive.date = Date()
@@ -52,7 +51,7 @@ class DrivesViewModel: ObservableObject {
         }
     }
     
-    func editDrive(moc: NSManagedObjectContext, drive: Drive, name: String, duration: Int32, distance: Double) {
+    func editDrive(drive: Drive, name: String, duration: Int32, distance: Double) {
         drives.removeAll { previousDrive in
             drive == previousDrive
         }
@@ -71,7 +70,7 @@ class DrivesViewModel: ObservableObject {
         }
     }
 
-    func deleteDrive(moc: NSManagedObjectContext, drive: Drive) {
+    func deleteDrive(drive: Drive) {
         moc.delete(drive)
 
         do {

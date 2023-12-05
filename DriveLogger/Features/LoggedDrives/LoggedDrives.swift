@@ -10,8 +10,9 @@ import CoreData
 
 struct LoggedDrives: View {
     @AppStorage("totalSeconds") private var totalSeconds: Int = 0
-    @StateObject private var drivesViewModel = DrivesViewModel()
-    @Environment(\.managedObjectContext) var moc
+//    @StateObject private var drivesViewModel = DrivesViewModel()
+    @EnvironmentObject private var drivesViewModel: DrivesViewModel
+//    @Environment(\.managedObjectContext) var moc
     @Environment(\.dismiss) var dismiss
     
     @State private var addViewShowing = false
@@ -60,7 +61,7 @@ struct LoggedDrives: View {
     private func deleteDrive(offsets: IndexSet) {
         withAnimation {
             offsets.map { drivesViewModel.drives[$0]}.forEach {drive in
-                drivesViewModel.deleteDrive(moc: moc, drive: drive)
+                drivesViewModel.deleteDrive(drive: drive)
             }
         }
     }

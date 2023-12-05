@@ -9,7 +9,9 @@ import SwiftUI
 import CoreData
 
 struct HomeView: View {
-    @StateObject private var drivesViewModel = DrivesViewModel()
+//    @StateObject private var drivesViewModel = DrivesViewModel()
+    
+    @EnvironmentObject private var drivesViewModel: DrivesViewModel
     
     var body: some View {
         NavigationStack{

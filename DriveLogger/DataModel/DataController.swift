@@ -10,17 +10,17 @@ import CoreData
 import SwiftUI
 
 //@MainActor
-//class DataController: ObservableObject {
-//    
-//    static let shared = DataController()
-//    
-//    let container = NSPersistentContainer(name: "DriveModel")
-//    
-//    init() {
-//        container.loadPersistentStores { desc, error in
-//            if let error = error {
-//                print("Failed to load data \(error.localizedDescription)")
-//            }
-//        }
-//    }
-//}
+class DataController: ObservableObject {
+    
+    static let shared = DataController()
+    
+    let container = NSPersistentContainer(name: "DriveModel")
+    
+    init() {
+        container.loadPersistentStores { desc, error in
+            if let error = error {
+                print("Failed to load data \(error.localizedDescription)")
+            }
+        }
+    }
+}
