@@ -9,11 +9,8 @@
 import SwiftUI
 
 struct AddDriveView: View {
-    
-//    @Environment(\.managedObjectContext) var moc
     @Environment(\.dismiss) var dismiss
-//    @StateObject private var drivesViewModel = DrivesViewModel()
-    @EnvironmentObject private var drivesViewModel: DrivesViewModel
+    @EnvironmentObject private var drivesDataModel: DrivesDataModel
     @State private var hours: Int = 0
     @State private var minutes: Int = 0
     @State private var seconds: Int = 0
@@ -21,8 +18,8 @@ struct AddDriveView: View {
     @State private var name: String = "Drive on \(dateFormatter.string(from: Date()))"
     @State private var distance: String = "0"
     private var durationSeconds: Int32 {
-        return Int32((drivesViewModel.hoursToSeconds(from: self.hours)) +
-                     (drivesViewModel.minutesToSeconds(from: self.minutes)) +
+        return Int32((drivesDataModel.hoursToSeconds(from: self.hours)) +
+                     (drivesDataModel.minutesToSeconds(from: self.minutes)) +
                      self.seconds)
     }
     
@@ -75,9 +72,9 @@ struct AddDriveView: View {
                 Button("Submit") {
                     if drive != nil {
                         print(durationSeconds)
-                        drivesViewModel.editDrive(drive: drive!, name: name, duration: durationSeconds, distance: Double(distance) ?? 0)
+                        drivesDataModel.editDrive(drive: drive!, name: name, duration: durationSeconds, distance: Double(distance) ?? 0)
                     } else {
-                        drivesViewModel.createDrive(name: name, duration: durationSeconds, distance: Double(distance) ?? 0)
+                        drivesDataModel.createDrive(name: name, duration: durationSeconds, distance: Double(distance) ?? 0)
                     }
                     dismiss()
                 }

@@ -9,9 +9,7 @@ import SwiftUI
 import CoreData
 
 struct HomeView: View {
-//    @StateObject private var drivesViewModel = DrivesViewModel()
-    
-    @EnvironmentObject private var drivesViewModel: DrivesViewModel
+    @EnvironmentObject private var drivesDataModel: DrivesDataModel
     
     var body: some View {
         NavigationStack{
@@ -20,7 +18,7 @@ struct HomeView: View {
                     Text("Total Hours")
                         .fontWeight(.bold)
                     
-                    Text("\(drivesViewModel.getHours(from: drivesViewModel.getTotalSeconds()))hrs  \(drivesViewModel.getMinutes(from: drivesViewModel.getTotalSeconds()))mins")
+                    Text("\(drivesDataModel.getTotalHours())hrs  \(drivesDataModel.getTotalMinutes())mins")
                         .fontWeight(.semibold)
                         .accessibilityIdentifier("TotalTime")
                 }

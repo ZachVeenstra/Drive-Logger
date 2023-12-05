@@ -9,7 +9,6 @@ import Foundation
 import CoreData
 import SwiftUI
 
-//@MainActor
 class DataController: ObservableObject {
     
     static let shared = DataController()

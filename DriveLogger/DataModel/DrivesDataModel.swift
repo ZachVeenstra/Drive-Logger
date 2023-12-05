@@ -1,5 +1,5 @@
 //
-//  DrivesViewModel.swift
+//  DrivesDataModel.swift
 //  DriveLogger
 //
 //  Created by Zach Veenstra on 12/4/23.
@@ -10,9 +10,7 @@ import CoreData
 import SwiftUI
 
 
-class DrivesViewModel: ObservableObject {
-    
-//    let container = NSPersistentContainer(name: "DriveModel")
+class DrivesDataModel: ObservableObject {
     let moc: NSManagedObjectContext
     
     private let secondsInHour: Int = 3600
@@ -23,10 +21,10 @@ class DrivesViewModel: ObservableObject {
     init(moc: NSManagedObjectContext) {
         self.moc = moc
         
-        fetchData(moc: moc)
+        fetchDrives()
     }
 
-    func fetchData(moc: NSManagedObjectContext) {
+    func fetchDrives() {
         let request = Drive.fetchRequest()
         if let drives = try? moc.fetch(request) {
             self.drives = drives
@@ -98,8 +96,16 @@ class DrivesViewModel: ObservableObject {
         return seconds % secondsInHour / secondsInMinute
     }
     
+    func getTotalMinutes() -> Int {
+        return getTotalSeconds() % secondsInHour / secondsInMinute
+    }
+    
     func getHours(from seconds: Int) -> Int {
         return seconds / secondsInHour
+    }
+    
+    func getTotalHours() -> Int {
+        return getTotalSeconds() / secondsInHour
     }
     
     func hoursToSeconds(from hours: Int) -> Int {

@@ -9,10 +9,7 @@ import SwiftUI
 import CoreData
 
 struct LoggedDrives: View {
-    @AppStorage("totalSeconds") private var totalSeconds: Int = 0
-//    @StateObject private var drivesViewModel = DrivesViewModel()
-    @EnvironmentObject private var drivesViewModel: DrivesViewModel
-//    @Environment(\.managedObjectContext) var moc
+    @EnvironmentObject private var drivesDataModel: DrivesDataModel
     @Environment(\.dismiss) var dismiss
     
     @State private var addViewShowing = false
@@ -21,7 +18,7 @@ struct LoggedDrives: View {
         NavigationView {
             VStack(alignment: .leading) {
                 List {
-                    ForEach(drivesViewModel.drives) { drive in
+                    ForEach(drivesDataModel.drives) { drive in
                         NavigationLink(destination: AddDriveView(drive: drive)) {
                             HStack{
                                 VStack(alignment: .leading, spacing: 6) {
@@ -60,8 +57,8 @@ struct LoggedDrives: View {
     }
     private func deleteDrive(offsets: IndexSet) {
         withAnimation {
-            offsets.map { drivesViewModel.drives[$0]}.forEach {drive in
-                drivesViewModel.deleteDrive(drive: drive)
+            offsets.map { drivesDataModel.drives[$0]}.forEach {drive in
+                drivesDataModel.deleteDrive(drive: drive)
             }
         }
     }
