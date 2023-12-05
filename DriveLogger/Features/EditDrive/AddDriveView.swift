@@ -32,8 +32,6 @@ struct AddDriveView: View {
                     Text("Drive Name")
                         .font(.title3)
                         .fontWeight(.bold)
-                    
-                    TextField("Name", text: $name)
                         .onAppear() {
                             if drive != nil {
                                 hours = Int(drive!.hours)
@@ -44,6 +42,8 @@ struct AddDriveView: View {
                                 distance = String(drive!.distance)
                             }
                         }
+                    
+                    TextField("Name", text: $name)
                         .accessibilityIdentifier("NameField")
                 }
 

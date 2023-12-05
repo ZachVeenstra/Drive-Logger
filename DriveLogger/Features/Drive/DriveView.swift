@@ -9,8 +9,8 @@ import SwiftUI
 
 struct DriveView: View {
     @Environment(\.dismiss) private var dismiss
-    @StateObject private var driveViewModel = DriveViewModel()
     @EnvironmentObject private var drivesDataModel: DrivesDataModel
+    @StateObject private var driveViewModel = DriveViewModel()
     
     var body: some View {
         VStack(spacing: 100) {
@@ -19,7 +19,7 @@ struct DriveView: View {
                 .fontWeight(.semibold)
             
             Button("End Drive") {
-                endDrive()
+                driveViewModel.endDrive(drivesDataModel: drivesDataModel)
                 dismiss()
             }
             .buttonStyle(ActionButtonStyle())
@@ -27,10 +27,6 @@ struct DriveView: View {
         .fixedSize()
         .navigationBarBackButtonHidden(true)
         .navigationTitle("Drive")
-    }
-    
-    func endDrive() -> Void {
-        drivesDataModel.createDrive(name: driveViewModel.getName(), duration: Int32(driveViewModel.secondsElapsed), distance: 0)
     }
 }
 

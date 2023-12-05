@@ -50,6 +50,10 @@ class DriveViewModel: ObservableObject {
         return self.secondsElapsed % secondsInMinute
     }
     
+    func endDrive(drivesDataModel: DrivesDataModel) -> Void {
+        drivesDataModel.createDrive(name: getName(), duration: Int32(secondsElapsed), distance: 0)
+    }
+    
     private let dateFormatter: DateFormatter = {
         let formatter: DateFormatter = DateFormatter()
         formatter.dateStyle = .short
