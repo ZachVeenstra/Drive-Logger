@@ -13,15 +13,21 @@ import SwiftUI
 class DrivesDataModel: ObservableObject {
     let moc: NSManagedObjectContext
     
-    private let secondsInHour: Int = 3600
-    private let secondsInMinute: Int = 60
-    
     @Published var drives: [Drive] = []
 
     init(moc: NSManagedObjectContext) {
         self.moc = moc
         
         fetchDrives()
+    }
+    
+    private func save(drive: Drive) {
+        do {
+            try moc.save()
+            drives.append(drive)
+        } catch {
+            print("Failed to save")
+        }
     }
 
     func fetchDrives() {
@@ -37,16 +43,11 @@ class DrivesDataModel: ObservableObject {
         drive.date = Date()
         drive.name = name
         drive.duration = duration
-        drive.hours = duration / Int32(secondsInHour)
-        drive.minutes = duration % Int32(secondsInHour) / Int32(secondsInMinute)
+        drive.hours = Int32(TimeConverter().getHours(from: Int(duration)))
+        drive.minutes = Int32(TimeConverter().getMinutes(from: Int(duration)))
         drive.distance = distance
 
-        do {
-            try moc.save()
-            drives.append(drive)
-        } catch {
-            print("Failed to add drive")
-        }
+        save(drive: drive)
     }
     
     func editDrive(drive: Drive, name: String, duration: Int32, distance: Double) {
@@ -56,16 +57,11 @@ class DrivesDataModel: ObservableObject {
         
         drive.name = name
         drive.duration = duration
-        drive.hours = duration / Int32(secondsInHour)
-        drive.minutes = duration % Int32(secondsInHour) / Int32(secondsInMinute)
+        drive.hours = Int32(TimeConverter().getHours(from: Int(duration)))
+        drive.minutes = Int32(TimeConverter().getMinutes(from: Int(duration)))
         drive.distance = distance
         
-        do {
-            try moc.save()
-            drives.append(drive)
-        } catch {
-            print("Failed to add drive")
-        }
+        save(drive: drive)
     }
 
     func deleteDrive(drive: Drive) {
@@ -92,27 +88,11 @@ class DrivesDataModel: ObservableObject {
         return Int(totalTime)
     }
     
-    func getMinutes(from seconds: Int) -> Int {
-        return seconds % secondsInHour / secondsInMinute
-    }
-    
     func getTotalMinutes() -> Int {
-        return getTotalSeconds() % secondsInHour / secondsInMinute
-    }
-    
-    func getHours(from seconds: Int) -> Int {
-        return seconds / secondsInHour
+        return TimeConverter().getMinutes(from: getTotalSeconds())
     }
     
     func getTotalHours() -> Int {
-        return getTotalSeconds() / secondsInHour
-    }
-    
-    func hoursToSeconds(from hours: Int) -> Int {
-        return hours * secondsInHour
-    }
-    
-    func minutesToSeconds(from minutes: Int) -> Int {
-        return minutes * secondsInMinute
+        return TimeConverter().getHours(from: getTotalSeconds())
     }
 }

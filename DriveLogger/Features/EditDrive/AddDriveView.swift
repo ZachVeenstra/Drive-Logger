@@ -18,8 +18,8 @@ struct AddDriveView: View {
     @State private var name: String = "Drive on \(dateFormatter.string(from: Date()))"
     @State private var distance: String = "0"
     private var durationSeconds: Int32 {
-        return Int32((drivesDataModel.hoursToSeconds(from: self.hours)) +
-                     (drivesDataModel.minutesToSeconds(from: self.minutes)) +
+        return Int32((TimeConverter().hoursToSeconds(from: self.hours)) +
+                     (TimeConverter().minutesToSeconds(from: self.minutes)) +
                      self.seconds)
     }
     
