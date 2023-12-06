@@ -3,9 +3,8 @@
 //  Drive Logger
 //
 //  Created by Zach Veenstra on 11/29/23.
+//  Inspiration: https://digitalbunker.dev/recreating-the-ios-timer-in-swiftui/
 //
-
-/** Adapted from https://digitalbunker.dev/recreating-the-ios-timer-in-swiftui/ */
 
 import SwiftUI
 

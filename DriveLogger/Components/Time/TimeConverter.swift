@@ -11,6 +11,10 @@ class TimeConverter {
     private let secondsInHour: Int = 3600
     private let secondsInMinute: Int = 60
     
+    func getSeconds(from seconds: Int) -> Int {
+        return seconds % secondsInMinute
+    }
+    
     func getMinutes(from seconds: Int) -> Int {
         return seconds % secondsInHour / secondsInMinute
     }

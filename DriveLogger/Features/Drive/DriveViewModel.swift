@@ -15,9 +15,15 @@ class DriveViewModel: ObservableObject {
     let secondsInMinute: Int = 60
     @Published private(set) var secondsElapsed: Int = 0 {
         didSet{
-            timeLabel = "\(getHours()):\(getMinutes()):\(getSeconds())"
+            let tc = TimeConverter()
+            let hours: Int = tc.getHours(from: self.secondsElapsed)
+            let minutes: Int = tc.getMinutes(from: self.secondsElapsed)
+            let seconds: Int = tc.getSeconds(from: self.secondsElapsed)
+            
+            timeLabel = "\(hours):\(minutes):\(seconds)"
         }
     }
+    
     @Published private(set) var timeLabel = ""
     
     private var cancellable: AnyCancellable!
@@ -36,18 +42,6 @@ class DriveViewModel: ObservableObject {
     
     func getName() -> String {
         return "Drive on \(dateFormatter.string(from: Date()))"
-    }
-    
-    private func getHours() -> Int {
-        return self.secondsElapsed / secondsInHour
-    }
-    
-    private func getMinutes() -> Int {
-        return self.secondsElapsed % secondsInHour / secondsInMinute
-    }
-    
-    private func getSeconds() -> Int {
-        return self.secondsElapsed % secondsInMinute
     }
     
     func endDrive(drivesDataModel: DrivesDataModel) -> Void {

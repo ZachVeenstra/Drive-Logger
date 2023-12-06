@@ -71,6 +71,7 @@ struct AddDriveView: View {
                 }
                 Button("Submit") {
                     submit()
+                    dismiss()
                 }
                 .accessibilityIdentifier("SubmitButton")
             }
@@ -84,11 +85,9 @@ struct AddDriveView: View {
         } else {
             drivesDataModel.createDrive(name: name, duration: durationSeconds, distance: Double(distance) ?? 0)
         }
-        dismiss()
     }
 }
 
-// Taken from XCode's default persistence controller
 private let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .short
@@ -96,6 +95,6 @@ private let dateFormatter: DateFormatter = {
     return formatter
 }()
 
-//#Preview {
-//    AddDriveView()
-//}
+#Preview {
+    AddDriveView()
+}

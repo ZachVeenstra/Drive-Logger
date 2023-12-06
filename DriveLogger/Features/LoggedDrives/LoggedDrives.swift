@@ -18,7 +18,7 @@ struct LoggedDrives: View {
         NavigationStack {
             VStack(alignment: .leading) {
                 List {
-                    ForEach(drivesDataModel.drives) { drive in
+                    ForEach(drivesDataModel.drives.sorted(using: [SortDescriptor(\.date, order: .reverse)])) { drive in
                         LoggedDriveItemView(drive: drive)
                     }
                     .onDelete(perform: deleteDrive)
@@ -44,6 +44,7 @@ struct LoggedDrives: View {
         }
         .navigationViewStyle(.stack)
     }
+    
     private func deleteDrive(offsets: IndexSet) {
         withAnimation {
             offsets.map { drivesDataModel.drives[$0]}.forEach {drive in

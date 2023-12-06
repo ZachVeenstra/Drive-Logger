@@ -3,12 +3,11 @@
 //  DriveLogger
 //
 //  Created by Zach Veenstra on 12/4/23.
+//  Inspiration: https://www.hackingwithswift.com/forums/swift/trying-to-access-managed-object-context-through-a-model/23266
 //
 
 import Foundation
 import CoreData
-import SwiftUI
-
 
 class DrivesDataModel: ObservableObject {
     let moc: NSManagedObjectContext

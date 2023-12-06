@@ -13,7 +13,7 @@ struct LoggedDriveItemView: View {
         NavigationLink(destination: AddDriveView(drive: drive)) {
             HStack{
                 VStack(alignment: .leading, spacing: 6) {
-                    Text(drive.name!)
+                    Text(drive.name ?? "")
                         .bold()
                         .accessibilityIdentifier("DriveElementName")
                     
