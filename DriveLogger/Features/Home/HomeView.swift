@@ -30,7 +30,7 @@ struct HomeView: View {
                     }
                     .buttonStyle(ActionButtonStyle())
                     
-                    NavigationLink(destination: LoggedDrives()) {
+                    NavigationLink(destination: LoggedDrivesView()) {
                         Text("Logged Drives")
                     }
                     .buttonStyle(ActionButtonStyle())

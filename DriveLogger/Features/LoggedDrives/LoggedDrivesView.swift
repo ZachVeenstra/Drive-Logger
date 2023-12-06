@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreData
 
-struct LoggedDrives: View {
+struct LoggedDrivesView: View {
     @EnvironmentObject private var drivesDataModel: DrivesDataModel
     @Environment(\.dismiss) var dismiss
     
@@ -55,5 +55,5 @@ struct LoggedDrives: View {
 }
 
 #Preview {
-    LoggedDrives()
+    LoggedDrivesView()
 }
