@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LoggedDriveItemView: View {
-    @State var drive: Drive
+    @ObservedObject var drive: Drive
     var body: some View {
         NavigationLink(destination: AddDriveView(drive: drive)) {
             HStack{

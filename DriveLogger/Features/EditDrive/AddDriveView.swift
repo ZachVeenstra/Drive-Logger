@@ -70,17 +70,21 @@ struct AddDriveView: View {
                     
                 }
                 Button("Submit") {
-                    if drive != nil {
-                        print(durationSeconds)
-                        drivesDataModel.editDrive(drive: drive!, name: name, duration: durationSeconds, distance: Double(distance) ?? 0)
-                    } else {
-                        drivesDataModel.createDrive(name: name, duration: durationSeconds, distance: Double(distance) ?? 0)
-                    }
-                    dismiss()
+                    submit()
                 }
                 .accessibilityIdentifier("SubmitButton")
             }
         }
+    }
+    
+    func submit() {
+        if drive != nil {
+            print(durationSeconds)
+            drivesDataModel.editDrive(drive: drive!, name: name, duration: durationSeconds, distance: Double(distance) ?? 0)
+        } else {
+            drivesDataModel.createDrive(name: name, duration: durationSeconds, distance: Double(distance) ?? 0)
+        }
+        dismiss()
     }
 }
 
