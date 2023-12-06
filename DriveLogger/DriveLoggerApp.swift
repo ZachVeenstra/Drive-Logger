@@ -6,14 +6,16 @@
 //
 
 import SwiftUI
+import CoreData
+
 @main
 struct DriveLoggerApp: App {
-    @StateObject private var dataController = DataController()
+    let moc = DataController().container.viewContext
     
     var body: some Scene {
         WindowGroup {
             HomeView()
-                .environment(\.managedObjectContext, dataController.container.viewContext)
+                .environmentObject(DrivesDataModel(moc: moc))
         }
     }
 }
