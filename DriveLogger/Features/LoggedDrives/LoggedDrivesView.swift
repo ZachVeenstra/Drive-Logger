@@ -54,6 +54,12 @@ struct LoggedDrivesView: View {
     }
 }
 
-#Preview {
-    LoggedDrivesView()
+
+struct LoggedDrivesView_Previews: PreviewProvider {
+    static let moc = DataController().container.viewContext
+    
+    static var previews: some View {
+        LoggedDrivesView()
+            .environmentObject(DrivesDataModel(moc: moc))
+    }
 }

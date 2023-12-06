@@ -30,6 +30,12 @@ struct DriveView: View {
     }
 }
 
-#Preview {
-    DriveView()
+
+struct DriveView_Previews: PreviewProvider {
+    static let moc = DataController().container.viewContext
+    
+    static var previews: some View {
+        DriveView()
+            .environmentObject(DrivesDataModel(moc: moc))
+    }
 }

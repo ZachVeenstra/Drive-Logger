@@ -44,6 +44,12 @@ struct HomeView: View {
     }
 }
 
-#Preview {
-    HomeView()
+
+struct HomeView_Previews: PreviewProvider {
+    static let moc = DataController().container.viewContext
+    
+    static var previews: some View {
+        HomeView()
+            .environmentObject(DrivesDataModel(moc: moc))
+    }
 }

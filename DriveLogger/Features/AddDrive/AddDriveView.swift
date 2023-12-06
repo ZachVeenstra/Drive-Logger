@@ -88,6 +88,7 @@ struct AddDriveView: View {
     }
 }
 
+
 private let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .short
@@ -95,6 +96,12 @@ private let dateFormatter: DateFormatter = {
     return formatter
 }()
 
-#Preview {
-    AddDriveView()
+
+struct AddDriveView_Previews: PreviewProvider {
+    static let moc = DataController().container.viewContext
+    
+    static var previews: some View {
+        AddDriveView()
+            .environmentObject(DrivesDataModel(moc: moc))
+    }
 }
