@@ -189,7 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				92D873172B19011B004B4707 /* Drive */,
-				92D873192B190171004B4707 /* EditDrive */,
+				92D873192B190171004B4707 /* AddDrive */,
 				92D873162B1900A8004B4707 /* Home */,
 				92D873182B190128004B4707 /* LoggedDrives */,
 			);
@@ -257,12 +257,12 @@
 			path = LoggedDrives;
 			sourceTree = "<group>";
 		};
-		92D873192B190171004B4707 /* EditDrive */ = {
+		92D873192B190171004B4707 /* AddDrive */ = {
 			isa = PBXGroup;
 			children = (
 				92692EF7293BD915008D38C7 /* AddDriveView.swift */,
 			);
-			path = EditDrive;
+			path = AddDrive;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
