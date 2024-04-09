@@ -60,7 +60,7 @@
 		92244B822B1FEDF700BE5D80 /* LoggedDriveItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedDriveItemView.swift; sourceTree = "<group>"; };
 		92244B852B20007600BE5D80 /* TimeConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeConverter.swift; sourceTree = "<group>"; };
 		923615D2292ABD1E0097B9B1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		923615D4292E530A0097B9B1 /* Drive-Logger-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Drive-Logger-Info.plist"; sourceTree = SOURCE_ROOT; };
+		923615D4292E530A0097B9B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		923615D5292E9E010097B9B1 /* DriveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveView.swift; sourceTree = "<group>"; };
 		9263EB13293FD44E00AC8EC3 /* DriveModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DriveModel.xcdatamodel; sourceTree = "<group>"; };
 		9263EB15293FD6D600AC8EC3 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				921C1D532928334A00FCC373 /* DriveLoggerApp.swift */,
-				923615D4292E530A0097B9B1 /* Drive-Logger-Info.plist */,
+				923615D4292E530A0097B9B1 /* Info.plist */,
 				927E86052B167E590038E4AD /* Components */,
 				9263EB17293FDBEB00AC8EC3 /* Features */,
 				9263EB11293FD40000AC8EC3 /* DataModel */,
@@ -588,7 +588,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ZachVeenstra.Drive-Logger";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zachveenstra.drivelogger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -617,7 +617,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "ZachVeenstra.Drive-Logger";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zachveenstra.drivelogger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
