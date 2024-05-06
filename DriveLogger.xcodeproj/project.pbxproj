@@ -344,7 +344,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 921C1D4B2928334A00FCC373 /* Build configuration list for PBXProject "Drive Logger" */;
+			buildConfigurationList = 921C1D4B2928334A00FCC373 /* Build configuration list for PBXProject "DriveLogger" */;
 			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -642,7 +642,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Drive Logger.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Drive Logger";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DriveLogger.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DriveLogger";
 			};
 			name = Debug;
 		};
@@ -661,7 +661,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Drive Logger.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Drive Logger";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DriveLogger.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DriveLogger";
 			};
 			name = Release;
 		};
@@ -702,7 +702,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		921C1D4B2928334A00FCC373 /* Build configuration list for PBXProject "Drive Logger" */ = {
+		921C1D4B2928334A00FCC373 /* Build configuration list for PBXProject "DriveLogger" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				921C1D772928334C00FCC373 /* Debug */,
