@@ -9,44 +9,13 @@ import Foundation
 import SwiftUI
 import CoreData
 import Combine
+import ActivityKit
 
+@MainActor
 class DriveViewModel: ObservableObject {
-    let secondsInHour: Int = 3600
-    let secondsInMinute: Int = 60
-    @Published private(set) var secondsElapsed: Int = 0 {
-        didSet{
-            let tc = TimeConverter()
-            let hours: Int = tc.getHours(from: self.secondsElapsed)
-            let minutes: Int = tc.getMinutes(from: self.secondsElapsed)
-            let seconds: Int = tc.getSeconds(from: self.secondsElapsed)
-            
-            timeLabel = "\(hours):\(minutes):\(seconds)"
-        }
-    }
+    @Published private(set) var startTime: Date
     
-    @Published private(set) var timeLabel = ""
-    
-    private var cancellable: AnyCancellable!
-    private var stopwatch = StopwatchModel(timeInterval: 1)
-    
-    init() {
-        cancellable = stopwatch.$timeElapsed
-            .assign(to: \DriveViewModel.secondsElapsed, on: self)
-        stopwatch.start()
-    }
-    
-    deinit {
-        stopwatch.stop()
-        cancellable.cancel()
-    }
-    
-    func getName() -> String {
-        return "Drive on \(dateFormatter.string(from: Date()))"
-    }
-    
-    func endDrive(drivesDataModel: DrivesDataModel) -> Void {
-        drivesDataModel.createDrive(name: getName(), duration: Int32(secondsElapsed), distance: 0)
-    }
+    private var liveActivity: Activity<DriveLoggerWidgetAttributes>? = nil
     
     private let dateFormatter: DateFormatter = {
         let formatter: DateFormatter = DateFormatter()
@@ -54,4 +23,67 @@ class DriveViewModel: ObservableObject {
         formatter.timeStyle = .short
         return formatter
     }()
+    
+    init() {
+        startTime = .now
+        
+        self.startLiveActivity()
+    }
+    
+    func getName() -> String {
+        return "Drive on \(dateFormatter.string(from: Date()))"
+    }
+    
+    func endDrive(drivesDataModel: DrivesDataModel) -> Void {
+        drivesDataModel.createDrive(
+            name: getName(),
+            duration: Int32(Date.now.timeIntervalSince(startTime)),
+            distance: 0
+        )
+        
+        Task {
+            await self.endLiveActivity()
+        }
+    }
+}
+
+private extension DriveViewModel {
+    func startLiveActivity() {
+        if ActivityAuthorizationInfo().areActivitiesEnabled {
+            do {
+                let attributes = DriveLoggerWidgetAttributes(startTime: startTime)
+                let initialState = DriveLoggerWidgetAttributes.ContentState()
+                
+                liveActivity = try Activity.request(
+                    attributes: attributes,
+                    content: .init(state: initialState, staleDate: nil),
+                    pushType: nil)
+            
+            } catch {
+                let errorMessage = """
+                                    Couldn't start activity
+                                    ------------------------
+                                    \(String(describing: error))
+                                    """
+                print(errorMessage)
+            }
+        }
+    }
+    
+    func endLiveActivity() async {
+        guard let activity = liveActivity else {
+            print("Activity was nil.")
+            return
+        }
+        
+        let finalContent = DriveLoggerWidgetAttributes.ContentState()
+        
+        await activity.end(
+            ActivityContent(state: finalContent, staleDate: nil),
+            dismissalPolicy: .immediate
+        )
+        
+        self.liveActivity = nil
+        print("Activity ended")
+    }
 }
