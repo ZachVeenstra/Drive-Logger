@@ -14,7 +14,7 @@ struct DriveView: View {
     
     var body: some View {
         VStack(spacing: 100) {
-            Text("\(driveViewModel.timeLabel)")
+            Text(driveViewModel.startTime, style: .relative)
                 .font(.largeTitle)
                 .fontWeight(.semibold)
             
@@ -23,8 +23,8 @@ struct DriveView: View {
                 dismiss()
             }
             .buttonStyle(ActionButtonStyle())
+            .fixedSize()
         }
-        .fixedSize()
         .navigationBarBackButtonHidden(true)
         .navigationTitle("Drive")
     }
