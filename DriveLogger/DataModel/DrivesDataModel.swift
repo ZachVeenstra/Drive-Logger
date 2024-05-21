@@ -36,28 +36,26 @@ class DrivesDataModel: ObservableObject {
         }
     }
 
-    func createDrive(name: String, duration: Int32, distance: Double) {
+    func createDrive(name: String, dayDuration: Int32, nightDuration: Int32, distance: Double) {
         let drive = Drive(context: moc)
         drive.id = UUID()
         drive.date = Date()
         drive.name = name
-        drive.duration = duration
-        drive.hours = Int32(TimeConverter().getHours(from: Int(duration)))
-        drive.minutes = Int32(TimeConverter().getMinutes(from: Int(duration)))
+        drive.dayDuration = dayDuration
+        drive.nightDuration = nightDuration
         drive.distance = distance
 
         save(drive: drive)
     }
     
-    func editDrive(drive: Drive, name: String, duration: Int32, distance: Double) {
+    func editDrive(drive: Drive, name: String, dayDuration: Int32, nightDuration: Int32, distance: Double) {
         drives.removeAll { previousDrive in
             drive == previousDrive
         }
         
         drive.name = name
-        drive.duration = duration
-        drive.hours = Int32(TimeConverter().getHours(from: Int(duration)))
-        drive.minutes = Int32(TimeConverter().getMinutes(from: Int(duration)))
+        drive.dayDuration = dayDuration
+        drive.nightDuration = nightDuration
         drive.distance = distance
         
         save(drive: drive)
@@ -78,13 +76,23 @@ class DrivesDataModel: ObservableObject {
     }
     
     func getTotalSeconds() -> Int {
-        var totalTime: Int32 = 0
+        var totalSeconds: Int32 = 0
         
         for drive in self.drives {
-            totalTime += drive.duration
+            totalSeconds = drive.dayDuration + drive.nightDuration
         }
         
-        return Int(totalTime)
+        return Int(totalSeconds)
+    }
+    
+    func getTotalNightSeconds() -> Int {
+        var totalNightSeconds: Int32 = 0
+        
+        for drive in self.drives {
+            totalNightSeconds += drive.nightDuration
+        }
+        
+        return Int(totalNightSeconds)
     }
     
     func getTotalMinutes() -> Int {
@@ -93,5 +101,13 @@ class DrivesDataModel: ObservableObject {
     
     func getTotalHours() -> Int {
         return TimeConverter().getHours(from: getTotalSeconds())
+    }
+    
+    func getTotalNightMinutes() -> Int {
+        return TimeConverter().getMinutes(from: getTotalNightSeconds())
+    }
+    
+    func getTotalNightHours() -> Int {
+        return TimeConverter().getHours(from: getTotalNightSeconds())
     }
 }
