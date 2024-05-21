@@ -19,7 +19,8 @@ class DriveViewModel: ObservableObject {
     @Published private(set) var startTime: Date
     
     var liveActivity: Activity<DriveLoggerWidgetAttributes>? = nil
-    
+    let locationManager = LocationManager()
+
     private let dateFormatter: DateFormatter = {
         let formatter: DateFormatter = DateFormatter()
         formatter.dateStyle = .short
@@ -45,7 +46,11 @@ class DriveViewModel: ObservableObject {
             let nightDuration: Int32
             
             do {
-                nightDuration = try await getSecondsDrivenDuringNight(driveStart: startTime, driveEnd: endTime)
+                if let location = locationManager.location {
+                    nightDuration = try await getSecondsDrivenDuringNight(driveStart: startTime, driveEnd: endTime, location: location)
+                } else {
+                    nightDuration = 0
+                }
             } catch {
                 // TODO: Show splash prompting the user to enter night duration.
                 nightDuration = 0
