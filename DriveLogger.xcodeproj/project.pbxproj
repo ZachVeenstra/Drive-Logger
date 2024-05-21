@@ -35,6 +35,8 @@
 		92A6629929F057CD00228064 /* LoggedDrives_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6629829F057CD00228064 /* LoggedDrives_UITests.swift */; };
 		92A6629B29F0582200228064 /* AddDriveView_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6629A29F0582200228064 /* AddDriveView_UITests.swift */; };
 		92A6629D29F0588B00228064 /* EditDriveView_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6629C29F0588B00228064 /* EditDriveView_UITests.swift */; };
+		92AE9FD72BFC30B700776885 /* DriveLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AE9FD62BFC30B700776885 /* DriveLiveActivity.swift */; };
+		92AE9FD92BFC316E00776885 /* DriveServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AE9FD82BFC316E00776885 /* DriveServices.swift */; };
 		92B4C5C52B1EC47E009E23D2 /* DrivesDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4C5C42B1EC47E009E23D2 /* DrivesDataModel.swift */; };
 		92D873152B190036004B4707 /* PreviewAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92D873142B190036004B4707 /* PreviewAssets.xcassets */; };
 		92DBE6EC2B1813B700D5C62B /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DBE6EB2B1813B700D5C62B /* TimePickerView.swift */; };
@@ -110,6 +112,8 @@
 		92A6629829F057CD00228064 /* LoggedDrives_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedDrives_UITests.swift; sourceTree = "<group>"; };
 		92A6629A29F0582200228064 /* AddDriveView_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDriveView_UITests.swift; sourceTree = "<group>"; };
 		92A6629C29F0588B00228064 /* EditDriveView_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDriveView_UITests.swift; sourceTree = "<group>"; };
+		92AE9FD62BFC30B700776885 /* DriveLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveLiveActivity.swift; sourceTree = "<group>"; };
+		92AE9FD82BFC316E00776885 /* DriveServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveServices.swift; sourceTree = "<group>"; };
 		92B4C5C42B1EC47E009E23D2 /* DrivesDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivesDataModel.swift; sourceTree = "<group>"; };
 		92D873142B190036004B4707 /* PreviewAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PreviewAssets.xcassets; sourceTree = "<group>"; };
 		92DBE6EB2B1813B700D5C62B /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
@@ -304,6 +308,8 @@
 			children = (
 				923615D5292E9E010097B9B1 /* DriveView.swift */,
 				929253682B1BB06700CB0988 /* DriveViewModel.swift */,
+				92AE9FD62BFC30B700776885 /* DriveLiveActivity.swift */,
+				92AE9FD82BFC316E00776885 /* DriveServices.swift */,
 			);
 			path = Drive;
 			sourceTree = "<group>";
@@ -503,8 +509,10 @@
 				92692EF8293BD915008D38C7 /* AddDriveView.swift in Sources */,
 				92B4C5C52B1EC47E009E23D2 /* DrivesDataModel.swift in Sources */,
 				9263EB16293FD6D600AC8EC3 /* DataController.swift in Sources */,
+				92AE9FD92BFC316E00776885 /* DriveServices.swift in Sources */,
 				92244B832B1FEDF700BE5D80 /* LoggedDriveItemView.swift in Sources */,
 				9263EB14293FD44E00AC8EC3 /* DriveModel.xcdatamodeld in Sources */,
+				92AE9FD72BFC30B700776885 /* DriveLiveActivity.swift in Sources */,
 				921C1D542928334A00FCC373 /* DriveLoggerApp.swift in Sources */,
 				920FBEF22BE9348300220584 /* DriveLoggerWidgetLiveActivity.swift in Sources */,
 				924BEB882BEA97E400AF98CF /* DriveLoggerWidget.swift in Sources */,
