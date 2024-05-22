@@ -11,16 +11,24 @@ import SwiftUI
 struct AddDriveView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject private var drivesDataModel: DrivesDataModel
-    @State private var hours: Int = 0
-    @State private var minutes: Int = 0
-    @State private var seconds: Int = 0
+    @State private var dayHours: Int = 0
+    @State private var dayMinutes: Int = 0
+    @State private var daySeconds: Int = 0
+    @State private var nightHours: Int = 0
+    @State private var nightMinutes: Int = 0
+    @State private var nightSeconds: Int = 0
     @State private var date: Date = Date()
     @State private var name: String = "Drive on \(dateFormatter.string(from: Date()))"
     @State private var distance: String = "0"
-    private var durationSeconds: Int32 {
-        return Int32((TimeConverter().hoursToSeconds(from: self.hours)) +
-                     (TimeConverter().minutesToSeconds(from: self.minutes)) +
-                     self.seconds)
+    private var dayDurationSeconds: Int32 {
+        return Int32((TimeConverter().hoursToSeconds(from: self.dayHours)) +
+                     (TimeConverter().minutesToSeconds(from: self.dayMinutes)) +
+                     self.daySeconds)
+    }
+    private var nightDurationSeconds: Int32 {
+        return Int32((TimeConverter().hoursToSeconds(from: self.nightHours)) +
+                     (TimeConverter().minutesToSeconds(from: self.nightMinutes)) +
+                     self.nightSeconds)
     }
     
     var drive: Drive?
@@ -34,9 +42,12 @@ struct AddDriveView: View {
                         .fontWeight(.bold)
                         .onAppear() {
                             if drive != nil {
-                                hours = Int(drive!.hours)
-                                minutes = Int(drive!.minutes)
-                                seconds = Int(drive!.duration % 60)
+                                dayHours = TimeConverter().getHours(from: Int(drive!.dayDuration))
+                                dayMinutes = TimeConverter().getMinutes(from: Int(drive!.dayDuration))
+                                daySeconds = TimeConverter().getSeconds(from: Int(drive!.dayDuration))
+                                nightHours = TimeConverter().getHours(from: Int(drive!.nightDuration))
+                                nightMinutes = TimeConverter().getMinutes(from: Int(drive!.nightDuration))
+                                nightSeconds = TimeConverter().getSeconds(from: Int(drive!.nightDuration))
                                 name = drive!.name ?? ""
                                 date = drive!.date!
                                 distance = String(drive!.distance)
@@ -48,14 +59,26 @@ struct AddDriveView: View {
                 }
 
                 Section {
-                    Text("Drive Duration")
+                    Text("Day Duration")
                         .font(.title3)
                         .fontWeight(.bold)
                     
                     HStack {
-                        TimePickerView(title: "hours", range: 0...23, selection: $hours)
-                        TimePickerView(title: "min", range: 0...59, selection: $minutes)
-                        TimePickerView(title: "sec", range: 0...59, selection: $seconds)
+                        TimePickerView(title: "hours", range: 0...23, selection: $dayHours)
+                        TimePickerView(title: "min", range: 0...59, selection: $dayMinutes)
+                        TimePickerView(title: "sec", range: 0...59, selection: $daySeconds)
+                    }
+                }
+                
+                Section {
+                    Text("Night Duration")
+                        .font(.title3)
+                        .fontWeight(.bold)
+                    
+                    HStack {
+                        TimePickerView(title: "hours", range: 0...23, selection: $nightHours)
+                        TimePickerView(title: "min", range: 0...59, selection: $nightMinutes)
+                        TimePickerView(title: "sec", range: 0...59, selection: $nightSeconds)
                     }
                 }
                                     
@@ -80,10 +103,9 @@ struct AddDriveView: View {
     
     func submit() {
         if drive != nil {
-            print(durationSeconds)
-            drivesDataModel.editDrive(drive: drive!, name: name, duration: durationSeconds, distance: Double(distance) ?? 0)
+            drivesDataModel.editDrive(drive: drive!, name: name, dayDuration: dayDurationSeconds, nightDuration: nightDurationSeconds, distance: Double(distance) ?? 0)
         } else {
-            drivesDataModel.createDrive(name: name, duration: durationSeconds, distance: Double(distance) ?? 0)
+            drivesDataModel.createDrive(name: name, dayDuration: dayDurationSeconds, nightDuration: nightDurationSeconds, distance: Double(distance) ?? 0)
         }
     }
 }

@@ -17,7 +17,7 @@ struct LoggedDriveItemView: View {
                         .bold()
                         .accessibilityIdentifier("DriveElementName")
                     
-                    Text("\(drive.hours)hrs  \(drive.minutes)mins")
+                    Text("\(TimeConverter().getHours(from: Int(drive.dayDuration + drive.nightDuration)))hrs  \(TimeConverter().getMinutes(from: Int(drive.dayDuration + drive.nightDuration)))mins")
                         .accessibilityIdentifier("DriveElementTime")
                 }
             }

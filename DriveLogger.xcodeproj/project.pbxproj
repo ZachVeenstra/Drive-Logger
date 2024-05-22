@@ -24,6 +24,7 @@
 		923615D6292E9E010097B9B1 /* DriveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923615D5292E9E010097B9B1 /* DriveView.swift */; };
 		924BEB872BEA97E000AF98CF /* DriveLoggerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920FBEE62BE9334F00220584 /* DriveLoggerWidget.swift */; };
 		924BEB882BEA97E400AF98CF /* DriveLoggerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920FBEE62BE9334F00220584 /* DriveLoggerWidget.swift */; };
+		924E39282BFD374800AABB8A /* DriveServicesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924E39272BFD374800AABB8A /* DriveServicesTests.swift */; };
 		9263EB14293FD44E00AC8EC3 /* DriveModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9263EB12293FD44E00AC8EC3 /* DriveModel.xcdatamodeld */; };
 		9263EB16293FD6D600AC8EC3 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9263EB15293FD6D600AC8EC3 /* DataController.swift */; };
 		9263EB1A294001A300AC8EC3 /* LoggedDrivesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9263EB19294001A300AC8EC3 /* LoggedDrivesView.swift */; };
@@ -35,6 +36,9 @@
 		92A6629929F057CD00228064 /* LoggedDrives_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6629829F057CD00228064 /* LoggedDrives_UITests.swift */; };
 		92A6629B29F0582200228064 /* AddDriveView_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6629A29F0582200228064 /* AddDriveView_UITests.swift */; };
 		92A6629D29F0588B00228064 /* EditDriveView_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6629C29F0588B00228064 /* EditDriveView_UITests.swift */; };
+		92AE9FD72BFC30B700776885 /* DriveLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AE9FD62BFC30B700776885 /* DriveLiveActivity.swift */; };
+		92AE9FD92BFC316E00776885 /* DriveServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AE9FD82BFC316E00776885 /* DriveServices.swift */; };
+		92AE9FDC2BFC382D00776885 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AE9FDB2BFC382D00776885 /* LocationManager.swift */; };
 		92B4C5C52B1EC47E009E23D2 /* DrivesDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4C5C42B1EC47E009E23D2 /* DrivesDataModel.swift */; };
 		92D873152B190036004B4707 /* PreviewAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92D873142B190036004B4707 /* PreviewAssets.xcassets */; };
 		92DBE6EC2B1813B700D5C62B /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DBE6EB2B1813B700D5C62B /* TimePickerView.swift */; };
@@ -99,6 +103,7 @@
 		923615D2292ABD1E0097B9B1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		923615D4292E530A0097B9B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		923615D5292E9E010097B9B1 /* DriveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveView.swift; sourceTree = "<group>"; };
+		924E39272BFD374800AABB8A /* DriveServicesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveServicesTests.swift; sourceTree = "<group>"; };
 		9263EB13293FD44E00AC8EC3 /* DriveModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DriveModel.xcdatamodel; sourceTree = "<group>"; };
 		9263EB15293FD6D600AC8EC3 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		9263EB19294001A300AC8EC3 /* LoggedDrivesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedDrivesView.swift; sourceTree = "<group>"; };
@@ -110,6 +115,11 @@
 		92A6629829F057CD00228064 /* LoggedDrives_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedDrives_UITests.swift; sourceTree = "<group>"; };
 		92A6629A29F0582200228064 /* AddDriveView_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDriveView_UITests.swift; sourceTree = "<group>"; };
 		92A6629C29F0588B00228064 /* EditDriveView_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDriveView_UITests.swift; sourceTree = "<group>"; };
+		92AE9FD62BFC30B700776885 /* DriveLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveLiveActivity.swift; sourceTree = "<group>"; };
+		92AE9FD82BFC316E00776885 /* DriveServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveServices.swift; sourceTree = "<group>"; };
+		92AE9FDB2BFC382D00776885 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		92AE9FDF2BFC46DA00776885 /* DriveLogger.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DriveLogger.entitlements; sourceTree = "<group>"; };
+		92AE9FE12BFC471500776885 /* DriveLoggerWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DriveLoggerWidgetExtension.entitlements; sourceTree = "<group>"; };
 		92B4C5C42B1EC47E009E23D2 /* DrivesDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivesDataModel.swift; sourceTree = "<group>"; };
 		92D873142B190036004B4707 /* PreviewAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PreviewAssets.xcassets; sourceTree = "<group>"; };
 		92DBE6EB2B1813B700D5C62B /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
@@ -173,6 +183,7 @@
 		921C1D472928334A00FCC373 = {
 			isa = PBXGroup;
 			children = (
+				92AE9FE12BFC471500776885 /* DriveLoggerWidgetExtension.entitlements */,
 				921C1D522928334A00FCC373 /* DriveLogger */,
 				921C1D682928334C00FCC373 /* DriveLoggerTests */,
 				921C1D722928334C00FCC373 /* DriveLoggerUITests */,
@@ -196,6 +207,7 @@
 		921C1D522928334A00FCC373 /* DriveLogger */ = {
 			isa = PBXGroup;
 			children = (
+				92AE9FDF2BFC46DA00776885 /* DriveLogger.entitlements */,
 				921C1D532928334A00FCC373 /* DriveLoggerApp.swift */,
 				923615D4292E530A0097B9B1 /* Info.plist */,
 				927E86052B167E590038E4AD /* Components */,
@@ -219,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				921C1D692928334C00FCC373 /* DriveLoggerTests.swift */,
+				924E39272BFD374800AABB8A /* DriveServicesTests.swift */,
 			);
 			path = DriveLoggerTests;
 			sourceTree = "<group>";
@@ -268,11 +281,20 @@
 		927E86052B167E590038E4AD /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				92AE9FDA2BFC381500776885 /* LocationManager */,
 				92244B842B20000E00BE5D80 /* Time */,
 				92C090152B1E580D00DB226B /* TimePicker */,
 				92C090142B1E57FC00DB226B /* ButtonStyles */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		92AE9FDA2BFC381500776885 /* LocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				92AE9FDB2BFC382D00776885 /* LocationManager.swift */,
+			);
+			path = LocationManager;
 			sourceTree = "<group>";
 		};
 		92C090142B1E57FC00DB226B /* ButtonStyles */ = {
@@ -304,6 +326,8 @@
 			children = (
 				923615D5292E9E010097B9B1 /* DriveView.swift */,
 				929253682B1BB06700CB0988 /* DriveViewModel.swift */,
+				92AE9FD62BFC30B700776885 /* DriveLiveActivity.swift */,
+				92AE9FD82BFC316E00776885 /* DriveServices.swift */,
 			);
 			path = Drive;
 			sourceTree = "<group>";
@@ -503,8 +527,11 @@
 				92692EF8293BD915008D38C7 /* AddDriveView.swift in Sources */,
 				92B4C5C52B1EC47E009E23D2 /* DrivesDataModel.swift in Sources */,
 				9263EB16293FD6D600AC8EC3 /* DataController.swift in Sources */,
+				92AE9FDC2BFC382D00776885 /* LocationManager.swift in Sources */,
+				92AE9FD92BFC316E00776885 /* DriveServices.swift in Sources */,
 				92244B832B1FEDF700BE5D80 /* LoggedDriveItemView.swift in Sources */,
 				9263EB14293FD44E00AC8EC3 /* DriveModel.xcdatamodeld in Sources */,
+				92AE9FD72BFC30B700776885 /* DriveLiveActivity.swift in Sources */,
 				921C1D542928334A00FCC373 /* DriveLoggerApp.swift in Sources */,
 				920FBEF22BE9348300220584 /* DriveLoggerWidgetLiveActivity.swift in Sources */,
 				924BEB882BEA97E400AF98CF /* DriveLoggerWidget.swift in Sources */,
@@ -518,6 +545,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				924E39282BFD374800AABB8A /* DriveServicesTests.swift in Sources */,
 				921C1D6A2928334C00FCC373 /* DriveLoggerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -561,6 +589,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = DriveLoggerWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9HCRY829GD;
@@ -592,6 +621,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = DriveLoggerWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9HCRY829GD;
@@ -741,6 +771,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DriveLogger/DriveLogger.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DriveLogger/PreviewContent\"";
@@ -748,6 +779,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Drive-Logger-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to determine when it is nighttime. Please enable to automatically track the amount of time you drive at night.";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -761,6 +794,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zachveenstra.drivelogger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -773,6 +810,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DriveLogger/DriveLogger.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DriveLogger/PreviewContent\"";
@@ -780,6 +818,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Drive-Logger-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to determine when it is nighttime. Please enable to automatically track the amount of time you drive at night.";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -793,6 +833,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zachveenstra.drivelogger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -806,6 +850,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9HCRY829GD;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
@@ -825,6 +870,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9HCRY829GD;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;

@@ -10,13 +10,17 @@ import SwiftUI
 import CoreData
 import Combine
 import ActivityKit
+import WeatherKit
+import MapKit
+import CoreLocation
 
 @MainActor
 class DriveViewModel: ObservableObject {
     @Published private(set) var startTime: Date
     
-    private var liveActivity: Activity<DriveLoggerWidgetAttributes>? = nil
-    
+    var liveActivity: Activity<DriveLoggerWidgetAttributes>? = nil
+    let locationManager = LocationManager.shared
+
     private let dateFormatter: DateFormatter = {
         let formatter: DateFormatter = DateFormatter()
         formatter.dateStyle = .short
@@ -35,55 +39,31 @@ class DriveViewModel: ObservableObject {
     }
     
     func endDrive(drivesDataModel: DrivesDataModel) -> Void {
-        drivesDataModel.createDrive(
-            name: getName(),
-            duration: Int32(Date.now.timeIntervalSince(startTime)),
-            distance: 0
-        )
-        
+        let endTime: Date = Date.now
+        let duration: Int32 = Int32(Date.now.timeIntervalSince(startTime))
+
         Task {
+            let nightDuration: Int32
+
+            do {
+                if let location = locationManager.location {
+                    nightDuration = Int32(try await getNightInterval(driveStart: startTime, driveEnd: endTime, location: location))
+                } else {
+                    nightDuration = 0
+                }
+            } catch {
+                // TODO: Show splash prompting the user to enter night duration.
+                nightDuration = 0
+            }
+            
+            drivesDataModel.createDrive(
+                name: getName(),
+                dayDuration: duration - nightDuration,
+                nightDuration: nightDuration,
+                distance: 0
+            )
+        
             await self.endLiveActivity()
         }
-    }
-}
-
-private extension DriveViewModel {
-    func startLiveActivity() {
-        if ActivityAuthorizationInfo().areActivitiesEnabled {
-            do {
-                let attributes = DriveLoggerWidgetAttributes(startTime: startTime)
-                let initialState = DriveLoggerWidgetAttributes.ContentState()
-                
-                liveActivity = try Activity.request(
-                    attributes: attributes,
-                    content: .init(state: initialState, staleDate: nil),
-                    pushType: nil)
-            
-            } catch {
-                let errorMessage = """
-                                    Couldn't start activity
-                                    ------------------------
-                                    \(String(describing: error))
-                                    """
-                print(errorMessage)
-            }
-        }
-    }
-    
-    func endLiveActivity() async {
-        guard let activity = liveActivity else {
-            print("Activity was nil.")
-            return
-        }
-        
-        let finalContent = DriveLoggerWidgetAttributes.ContentState()
-        
-        await activity.end(
-            ActivityContent(state: finalContent, staleDate: nil),
-            dismissalPolicy: .immediate
-        )
-        
-        self.liveActivity = nil
-        print("Activity ended")
     }
 }

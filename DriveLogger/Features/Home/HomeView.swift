@@ -15,7 +15,7 @@ struct HomeView: View {
         NavigationStack{
             VStack {
                 VStack {
-                    Text("Total Hours")
+                    Text("Total Time")
                         .fontWeight(.bold)
                     
                     Text("\(drivesDataModel.getTotalHours())hrs  \(drivesDataModel.getTotalMinutes())mins")
@@ -23,6 +23,14 @@ struct HomeView: View {
                         .accessibilityIdentifier("TotalTime")
                 }
                 .font(.largeTitle)
+                
+                VStack {
+                    Text("Total Night Time")
+                        .fontWeight(.bold)
+                    Text("\(drivesDataModel.getTotalNightHours())hrs  \(drivesDataModel.getTotalNightMinutes())mins")
+                        .fontWeight(.semibold)
+                        .accessibilityIdentifier("TotalTime")
+                }
                 
                 VStack {
                     NavigationLink(destination: DriveView()) {

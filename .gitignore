@@ -1,5 +1,6 @@
 ## User settings
 xcuserdata/
+DriveLogger.xcodeproj/xcshareddata/
 
 ## Obj-C/Swift specific
 *.hmap
