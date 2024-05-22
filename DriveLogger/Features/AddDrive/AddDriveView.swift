@@ -103,7 +103,6 @@ struct AddDriveView: View {
     
     func submit() {
         if drive != nil {
-            print(dayDurationSeconds)
             drivesDataModel.editDrive(drive: drive!, name: name, dayDuration: dayDurationSeconds, nightDuration: nightDurationSeconds, distance: Double(distance) ?? 0)
         } else {
             drivesDataModel.createDrive(name: name, dayDuration: dayDurationSeconds, nightDuration: nightDurationSeconds, distance: Double(distance) ?? 0)

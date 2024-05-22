@@ -24,6 +24,7 @@
 		923615D6292E9E010097B9B1 /* DriveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923615D5292E9E010097B9B1 /* DriveView.swift */; };
 		924BEB872BEA97E000AF98CF /* DriveLoggerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920FBEE62BE9334F00220584 /* DriveLoggerWidget.swift */; };
 		924BEB882BEA97E400AF98CF /* DriveLoggerWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920FBEE62BE9334F00220584 /* DriveLoggerWidget.swift */; };
+		924E39282BFD374800AABB8A /* DriveServicesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924E39272BFD374800AABB8A /* DriveServicesTests.swift */; };
 		9263EB14293FD44E00AC8EC3 /* DriveModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9263EB12293FD44E00AC8EC3 /* DriveModel.xcdatamodeld */; };
 		9263EB16293FD6D600AC8EC3 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9263EB15293FD6D600AC8EC3 /* DataController.swift */; };
 		9263EB1A294001A300AC8EC3 /* LoggedDrivesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9263EB19294001A300AC8EC3 /* LoggedDrivesView.swift */; };
@@ -102,6 +103,7 @@
 		923615D2292ABD1E0097B9B1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		923615D4292E530A0097B9B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		923615D5292E9E010097B9B1 /* DriveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveView.swift; sourceTree = "<group>"; };
+		924E39272BFD374800AABB8A /* DriveServicesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveServicesTests.swift; sourceTree = "<group>"; };
 		9263EB13293FD44E00AC8EC3 /* DriveModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DriveModel.xcdatamodel; sourceTree = "<group>"; };
 		9263EB15293FD6D600AC8EC3 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		9263EB19294001A300AC8EC3 /* LoggedDrivesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedDrivesView.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				921C1D692928334C00FCC373 /* DriveLoggerTests.swift */,
+				924E39272BFD374800AABB8A /* DriveServicesTests.swift */,
 			);
 			path = DriveLoggerTests;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				924E39282BFD374800AABB8A /* DriveServicesTests.swift in Sources */,
 				921C1D6A2928334C00FCC373 /* DriveLoggerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -776,7 +780,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Drive-Logger-Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your location.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to determine when it is nighttime. Please enable to automatically track the amount of time you drive at night.";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -815,7 +819,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Drive-Logger-Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Your location.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We use your location to determine when it is nighttime. Please enable to automatically track the amount of time you drive at night.";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -846,6 +850,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9HCRY829GD;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
@@ -865,6 +870,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9HCRY829GD;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;

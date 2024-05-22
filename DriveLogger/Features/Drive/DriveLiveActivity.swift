@@ -19,7 +19,9 @@ extension DriveViewModel {
                     attributes: attributes,
                     content: .init(state: initialState, staleDate: nil),
                     pushType: nil)
-            
+
+                print("Live activity started")
+
             } catch {
                 let errorMessage = """
                                     Couldn't start activity

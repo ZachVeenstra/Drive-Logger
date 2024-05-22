@@ -19,7 +19,7 @@ class DriveViewModel: ObservableObject {
     @Published private(set) var startTime: Date
     
     var liveActivity: Activity<DriveLoggerWidgetAttributes>? = nil
-    let locationManager = LocationManager()
+    let locationManager = LocationManager.shared
 
     private let dateFormatter: DateFormatter = {
         let formatter: DateFormatter = DateFormatter()
@@ -40,14 +40,14 @@ class DriveViewModel: ObservableObject {
     
     func endDrive(drivesDataModel: DrivesDataModel) -> Void {
         let endTime: Date = Date.now
-        let duration: Double = Date.now.timeIntervalSince(startTime)
-        
+        let duration: Int32 = Int32(Date.now.timeIntervalSince(startTime))
+
         Task {
             let nightDuration: Int32
-            
+
             do {
                 if let location = locationManager.location {
-                    nightDuration = try await getSecondsDrivenDuringNight(driveStart: startTime, driveEnd: endTime, location: location)
+                    nightDuration = Int32(try await getNightInterval(driveStart: startTime, driveEnd: endTime, location: location))
                 } else {
                     nightDuration = 0
                 }
@@ -58,7 +58,7 @@ class DriveViewModel: ObservableObject {
             
             drivesDataModel.createDrive(
                 name: getName(),
-                dayDuration: Int32(duration) - nightDuration,
+                dayDuration: duration - nightDuration,
                 nightDuration: nightDuration,
                 distance: 0
             )
