@@ -79,7 +79,7 @@ class DrivesDataModel: ObservableObject {
         var totalSeconds: Int32 = 0
         
         for drive in self.drives {
-            totalSeconds = drive.dayDuration + drive.nightDuration
+            totalSeconds += drive.dayDuration + drive.nightDuration
         }
         
         return Int(totalSeconds)
