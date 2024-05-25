@@ -35,10 +35,11 @@ struct DriveLoggerWidgetLiveActivity: Widget {
                         .font(.largeTitle)
                 }
             } compactLeading: {
-                Text(context.attributes.startTime, style: .timer)
-            } compactTrailing: {
                 Image(systemName: "list.clipboard")
                     .foregroundStyle(Color.accentColor)
+            } compactTrailing: {
+                Text(context.attributes.startTime, style: .timer)
+                    .frame(maxWidth: .minimum(50, 50), alignment: .leading)
             } minimal: {
                 Image(systemName: "list.clipboard")
                     .foregroundStyle(Color.accentColor)
