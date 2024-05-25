@@ -24,7 +24,7 @@ class DataController: ObservableObject {
 
     let container: NSPersistentContainer
 
-    init(inMemory: Bool = false) {
+    private init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "DriveModel")
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(filePath: "/dev/null")

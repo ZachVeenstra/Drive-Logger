@@ -10,8 +10,8 @@ import CoreData
 
 @main
 struct DriveLoggerApp: App {
-    let moc = DataController().container.viewContext
-    
+    let moc = DataController.shared.container.viewContext
+
     var body: some Scene {
         WindowGroup {
             HomeView()

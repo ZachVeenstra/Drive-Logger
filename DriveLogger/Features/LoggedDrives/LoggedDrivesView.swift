@@ -56,7 +56,7 @@ struct LoggedDrivesView: View {
 
 
 struct LoggedDrivesView_Previews: PreviewProvider {
-    static let moc = DataController().container.viewContext
+    static let moc = DataController.shared.container.viewContext
     
     static var previews: some View {
         LoggedDrivesView()

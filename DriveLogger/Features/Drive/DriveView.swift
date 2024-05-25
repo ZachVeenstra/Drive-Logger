@@ -32,7 +32,7 @@ struct DriveView: View {
 
 
 struct DriveView_Previews: PreviewProvider {
-    static let moc = DataController().container.viewContext
+    static let moc = DataController.shared.container.viewContext
     
     static var previews: some View {
         DriveView()
