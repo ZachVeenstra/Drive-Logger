@@ -24,6 +24,9 @@ class DrivesDataModel: ObservableObject {
         do {
             try moc.save()
             drives.append(drive)
+            drives.sort {
+                $0.date! > $1.date!
+            }
         } catch {
             print("Failed to save")
         }
@@ -71,7 +74,7 @@ class DrivesDataModel: ObservableObject {
                 drives.remove(at: index)
             }
         } catch {
-            print("Error deleting task")
+            print("Error deleting drive")
         }
     }
     
@@ -79,7 +82,7 @@ class DrivesDataModel: ObservableObject {
         var totalSeconds: Int32 = 0
         
         for drive in self.drives {
-            totalSeconds = drive.dayDuration + drive.nightDuration
+            totalSeconds += drive.dayDuration + drive.nightDuration
         }
         
         return Int(totalSeconds)

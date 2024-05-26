@@ -11,53 +11,48 @@ import CoreData
 struct LoggedDrivesView: View {
     @EnvironmentObject private var drivesDataModel: DrivesDataModel
     @Environment(\.dismiss) var dismiss
-    
+
     @State private var addViewShowing = false
-    
+
     var body: some View {
-        NavigationStack {
-            VStack(alignment: .leading) {
-                List {
-                    ForEach(drivesDataModel.drives.sorted(using: [SortDescriptor(\.date, order: .reverse)])) { drive in
-                        LoggedDriveItemView(drive: drive)
-                    }
-                    .onDelete(perform: deleteDrive)
+        VStack(alignment: .leading) {
+            List {
+                ForEach(drivesDataModel.drives) { drive in
+                    LoggedDriveItemView(drive: drive)
                 }
-                .listStyle(.plain)
+                .onDelete(perform: deleteDrive)
             }
-            .navigationTitle("Logged Drives")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        addViewShowing.toggle()
-                    } label: {
-                        Label("Add drive", systemImage: "plus")
-                    }.accessibilityIdentifier("AddDriveButton")
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
+            .listStyle(.plain)
+        }
+        .navigationTitle("Logged Drives")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    addViewShowing.toggle()
+                } label: {
+                    Label("Add drive", systemImage: "plus")
+                }.accessibilityIdentifier("AddDriveButton")
             }
-            .sheet(isPresented: $addViewShowing) {
-                AddDriveView()
+            ToolbarItem(placement: .navigationBarTrailing) {
+                EditButton()
             }
         }
-        .navigationViewStyle(.stack)
+        .sheet(isPresented: $addViewShowing) {
+            AddDriveView()
+        }
     }
-    
+
     private func deleteDrive(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { drivesDataModel.drives[$0]}.forEach {drive in
-                drivesDataModel.deleteDrive(drive: drive)
-            }
+        offsets.map { drivesDataModel.drives[$0] }.forEach {drive in
+            drivesDataModel.deleteDrive(drive: drive)
         }
     }
 }
 
 
 struct LoggedDrivesView_Previews: PreviewProvider {
-    static let moc = DataController().container.viewContext
-    
+    static let moc = DataController.shared.container.viewContext
+
     static var previews: some View {
         LoggedDrivesView()
             .environmentObject(DrivesDataModel(moc: moc))
