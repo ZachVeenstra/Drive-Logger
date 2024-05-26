@@ -20,8 +20,6 @@ class DataController: ObservableObject {
         return result
     }()
 
-    let context = NSManagedObjectContext(.privateQueue)
-
     let container: NSPersistentContainer
 
     private init(inMemory: Bool = false) {
@@ -39,6 +37,7 @@ class DataController: ObservableObject {
             }
         }
         container.viewContext.automaticallyMergesChangesFromParent = true
+        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
     }
 }
 
