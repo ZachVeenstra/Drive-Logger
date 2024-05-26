@@ -21,7 +21,7 @@ class BackgroundDrivesDataModel: ObservableObject {
 
     func createDrive() async {
         await backgroundContext.perform {
-            self.dataModel.createDrive(name: "Lol 2", dayDuration: 6000, nightDuration: 6600, distance: 200)
+            self.dataModel.createDrive(name: "Background drive", dayDuration: 6000, nightDuration: 6600, distance: 200)
         }
     }
 }

@@ -16,7 +16,8 @@ class DrivesDataModel: ObservableObject {
 
     init(moc: NSManagedObjectContext) {
         self.moc = moc
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(fetchUpdates(_:)), name: .NSManagedObjectContextObjectsDidChange, object: nil)
+
         fetchDrives()
     }
     
@@ -24,9 +25,6 @@ class DrivesDataModel: ObservableObject {
         do {
             try moc.save()
             drives.append(drive)
-            drives.sort {
-                $0.date! > $1.date!
-            }
         } catch {
             print("Failed to save")
         }
@@ -39,6 +37,12 @@ class DrivesDataModel: ObservableObject {
                 $0.date! > $1.date!
             }
             self.drives = drives
+        }
+    }
+
+    @objc private func fetchUpdates(_ notification: Notification) {
+        moc.perform {
+            self.fetchDrives()
         }
     }
 
