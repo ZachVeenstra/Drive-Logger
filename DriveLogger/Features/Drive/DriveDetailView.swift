@@ -18,8 +18,9 @@ struct DriveDetailView: View {
     @State private var nightMinutes: Int = 0
     @State private var nightSeconds: Int = 0
     @State private var date: Date = Date()
-    @State private var name: String = "Drive on \(dateFormatter.string(from: Date()))"
+    @State private var name: String = Date().formattedDate
     @State private var distance: String = "0"
+    @State private var didUpdateDate: Bool = false
     private var dayDurationSeconds: Int32 {
         return Int32((TimeConverter().hoursToSeconds(from: self.dayHours)) +
                      (TimeConverter().minutesToSeconds(from: self.dayMinutes)) +
@@ -35,6 +36,14 @@ struct DriveDetailView: View {
     
     var body: some View {
         Form {
+            Section {
+                DatePicker(LocalizedStringKey(stringLiteral: "Date"), selection: $date)
+                    .font(.title3)
+                    .fontWeight(.bold)
+                    .onChange(of: date) { oldValue, newValue in
+                        didUpdateDate.toggle()
+                    }
+            }
             Section {
                 Text("Drive Name")
                     .font(.title3)
@@ -55,6 +64,12 @@ struct DriveDetailView: View {
 
                 TextField("Name", text: $name)
                     .accessibilityIdentifier("NameField")
+                if didUpdateDate {
+                    Button("Recalculate Name") {
+                        name = date.formattedDate
+                        didUpdateDate.toggle()
+                    }
+                }
             }
 
             Section {
