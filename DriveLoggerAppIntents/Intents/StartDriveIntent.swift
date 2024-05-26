@@ -11,12 +11,7 @@
 //    static var title: LocalizedStringResource = "Start Drive"
 //
 //    func perform() async throws -> some IntentResult {
-//        let backgroundContext = DataController.shared.container.newBackgroundContext()
-//        await backgroundContext.perform {
-//            DrivesDataModel(moc: backgroundContext).createDrive(name: "Lol 2", dayDuration: 6000, nightDuration: 6600, distance: 200)
-//            try! backgroundContext.save()
-//        }
-//
+//        await BackgroundDrivesDataModel.shared.createDrive()
 //        return .result()
 //    }
 //}

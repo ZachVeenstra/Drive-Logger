@@ -34,7 +34,10 @@ class DrivesDataModel: ObservableObject {
 
     func fetchDrives() {
         let request = Drive.fetchRequest()
-        if let drives = try? moc.fetch(request) {
+        if var drives = try? moc.fetch(request) {
+            drives.sort {
+                $0.date! > $1.date!
+            }
             self.drives = drives
         }
     }

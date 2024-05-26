@@ -29,9 +29,6 @@ struct LoggedDrivesView: View {
                     Label("Add drive", systemImage: "plus")
                 }.accessibilityIdentifier("AddDriveButton")
             }
-            ToolbarItem(placement: .navigationBarTrailing) {
-                EditButton()
-            }
         }
     }
 
