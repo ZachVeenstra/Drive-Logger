@@ -1,5 +1,5 @@
 //
-//  AddDriveView.swift
+//  DriveDetailView.swift
 //  Drive Logger
 //
 //  Created by Zach Veenstra on 12/3/22.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct AddDriveView: View {
+struct DriveDetailView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject private var drivesDataModel: DrivesDataModel
     @State private var dayHours: Int = 0
@@ -123,7 +123,7 @@ struct AddDriveView_Previews: PreviewProvider {
     static let moc = DataController.shared.container.viewContext
     
     static var previews: some View {
-        AddDriveView()
+        DriveDetailView()
             .environmentObject(DrivesDataModel(moc: moc))
     }
 }

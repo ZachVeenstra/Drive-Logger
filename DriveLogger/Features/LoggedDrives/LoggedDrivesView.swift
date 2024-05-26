@@ -38,7 +38,7 @@ struct LoggedDrivesView: View {
             }
         }
         .sheet(isPresented: $addViewShowing) {
-            AddDriveView()
+            DriveDetailView()
         }
     }
 

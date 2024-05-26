@@ -28,7 +28,7 @@ final class AddDriveView_UITests: XCTestCase {
     
     
     func test_AddDriveView_driveNameTextField_shouldSaveNameWhenEdited() {
-        // Given we are on the AddDriveView
+        // Given we are on the DriveDetailView
         goToAddDriveView()
         
         // When the drive name textfield is edited
@@ -60,7 +60,7 @@ final class AddDriveView_UITests: XCTestCase {
     }
     
     func test_AddDriveView_secondsSlider_shouldUpdateWhenSlid() {
-        // Given we are on the AddDriveView
+        // Given we are on the DriveDetailView
         goToAddDriveView()
         
         // When the seconds slider is slid
@@ -77,7 +77,7 @@ final class AddDriveView_UITests: XCTestCase {
     }
     
     func test_AddDriveView_minutesSlider_shouldUpdateWhenSlid() {
-        // Given we are on the AddDriveView
+        // Given we are on the DriveDetailView
         goToAddDriveView()
         
         // When the minutes slider is slid
@@ -94,7 +94,7 @@ final class AddDriveView_UITests: XCTestCase {
     }
     
     func test_AddDriveView_hoursSlider_shouldUpdateWhenSlid() {
-        // Given we are on the AddDriveView
+        // Given we are on the DriveDetailView
         goToAddDriveView()
         
         // When the hours slider is slid
@@ -111,7 +111,7 @@ final class AddDriveView_UITests: XCTestCase {
     }
     
     func test_AddDriveView_driveDistanceTextfield_shouldUpdateWhenEdited() {
-        // Given we are on the AddDriveView
+        // Given we are on the DriveDetailView
         goToAddDriveView()
         
         // When the drive distance textfield is edited
@@ -137,7 +137,7 @@ final class AddDriveView_UITests: XCTestCase {
     
     func test_AddDriveView_submitButton_shouldNavigateToLoggedDrives() {
         
-        // Given we are on the AddDriveView
+        // Given we are on the DriveDetailView
         goToAddDriveView()
         
         // When we tap the submit button
@@ -152,7 +152,7 @@ final class AddDriveView_UITests: XCTestCase {
     
     func test_AddDriveView_submitButton_shouldLogDrive() {
         
-        // Given we are on the AddDriveView
+        // Given we are on the DriveDetailView
         goToAddDriveView()
         
         // When we tap the submit button
@@ -185,7 +185,7 @@ final class AddDriveView_UITests: XCTestCase {
     
     // Not possible
     func test_AddDriveView_slideDownAction_shouldNavigateToLoggedDrives() {
-        // Given we are on the AddDriveView
+        // Given we are on the DriveDetailView
         goToAddDriveView()
         
         // When we slide down
@@ -199,7 +199,7 @@ final class AddDriveView_UITests: XCTestCase {
     
     // Not Possible
     func test_AddDriveView_slideDownAction_shouldNotLogDrive() {
-        // Given we are on the AddDriveView
+        // Given we are on the DriveDetailView
         goToAddDriveView()
         
         // When we slide down
