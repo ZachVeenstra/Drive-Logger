@@ -12,8 +12,6 @@ struct LoggedDrivesView: View {
     @EnvironmentObject private var drivesDataModel: DrivesDataModel
     @Environment(\.dismiss) var dismiss
 
-    @State private var addViewShowing = false
-
     var body: some View {
         VStack(alignment: .leading) {
             List {
@@ -27,18 +25,13 @@ struct LoggedDrivesView: View {
         .navigationTitle("Logged Drives")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    addViewShowing.toggle()
-                } label: {
+                NavigationLink(destination: DriveDetailView()) {
                     Label("Add drive", systemImage: "plus")
                 }.accessibilityIdentifier("AddDriveButton")
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 EditButton()
             }
-        }
-        .sheet(isPresented: $addViewShowing) {
-            DriveDetailView()
         }
     }
 

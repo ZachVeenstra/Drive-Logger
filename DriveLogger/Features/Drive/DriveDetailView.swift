@@ -34,65 +34,67 @@ struct DriveDetailView: View {
     var drive: Drive?
     
     var body: some View {
-        VStack {
-            Form {
-                Section {
-                    Text("Drive Name")
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .onAppear() {
-                            if drive != nil {
-                                dayHours = TimeConverter().getHours(from: Int(drive!.dayDuration))
-                                dayMinutes = TimeConverter().getMinutes(from: Int(drive!.dayDuration))
-                                daySeconds = TimeConverter().getSeconds(from: Int(drive!.dayDuration))
-                                nightHours = TimeConverter().getHours(from: Int(drive!.nightDuration))
-                                nightMinutes = TimeConverter().getMinutes(from: Int(drive!.nightDuration))
-                                nightSeconds = TimeConverter().getSeconds(from: Int(drive!.nightDuration))
-                                name = drive!.name ?? ""
-                                date = drive!.date!
-                                distance = String(drive!.distance)
-                            }
+        Form {
+            Section {
+                Text("Drive Name")
+                    .font(.title3)
+                    .fontWeight(.bold)
+                    .onAppear() {
+                        if drive != nil {
+                            dayHours = TimeConverter().getHours(from: Int(drive!.dayDuration))
+                            dayMinutes = TimeConverter().getMinutes(from: Int(drive!.dayDuration))
+                            daySeconds = TimeConverter().getSeconds(from: Int(drive!.dayDuration))
+                            nightHours = TimeConverter().getHours(from: Int(drive!.nightDuration))
+                            nightMinutes = TimeConverter().getMinutes(from: Int(drive!.nightDuration))
+                            nightSeconds = TimeConverter().getSeconds(from: Int(drive!.nightDuration))
+                            name = drive!.name ?? ""
+                            date = drive!.date!
+                            distance = String(drive!.distance)
                         }
-                    
-                    TextField("Name", text: $name)
-                        .accessibilityIdentifier("NameField")
-                }
+                    }
 
-                Section {
-                    Text("Day Duration")
-                        .font(.title3)
-                        .fontWeight(.bold)
-                    
-                    HStack {
-                        TimePickerView(title: "hours", range: 0...23, selection: $dayHours)
-                        TimePickerView(title: "min", range: 0...59, selection: $dayMinutes)
-                        TimePickerView(title: "sec", range: 0...59, selection: $daySeconds)
-                    }
+                TextField("Name", text: $name)
+                    .accessibilityIdentifier("NameField")
+            }
+
+            Section {
+                Text("Day Duration")
+                    .font(.title3)
+                    .fontWeight(.bold)
+
+                HStack {
+                    TimePickerView(title: "hours", range: 0...23, selection: $dayHours)
+                    TimePickerView(title: "min", range: 0...59, selection: $dayMinutes)
+                    TimePickerView(title: "sec", range: 0...59, selection: $daySeconds)
                 }
-                
-                Section {
-                    Text("Night Duration")
-                        .font(.title3)
-                        .fontWeight(.bold)
-                    
-                    HStack {
-                        TimePickerView(title: "hours", range: 0...23, selection: $nightHours)
-                        TimePickerView(title: "min", range: 0...59, selection: $nightMinutes)
-                        TimePickerView(title: "sec", range: 0...59, selection: $nightSeconds)
-                    }
+            }
+
+            Section {
+                Text("Night Duration")
+                    .font(.title3)
+                    .fontWeight(.bold)
+
+                HStack {
+                    TimePickerView(title: "hours", range: 0...23, selection: $nightHours)
+                    TimePickerView(title: "min", range: 0...59, selection: $nightMinutes)
+                    TimePickerView(title: "sec", range: 0...59, selection: $nightSeconds)
                 }
-                                    
-                Section {
-                    Text("Drive Distance")
-                        .font(.title3)
-                        .fontWeight(.bold)
-                    
-                    TextField("Distance", text: $distance)
-                        .keyboardType(.numberPad)
-                        .accessibilityIdentifier("DistanceField")
-                    
-                }
-                Button("Submit") {
+            }
+
+            Section {
+                Text("Drive Distance")
+                    .font(.title3)
+                    .fontWeight(.bold)
+
+                TextField("Distance", text: $distance)
+                    .keyboardType(.numberPad)
+                    .accessibilityIdentifier("DistanceField")
+
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("Save") {
                     submit()
                     dismiss()
                 }
