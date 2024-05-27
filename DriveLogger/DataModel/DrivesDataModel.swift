@@ -46,10 +46,10 @@ class DrivesDataModel: ObservableObject {
         }
     }
 
-    func createDrive(name: String, dayDuration: Int32, nightDuration: Int32, distance: Double) {
+    func createDrive(date: Date, name: String, dayDuration: Int32, nightDuration: Int32, distance: Double) {
         let drive = Drive(context: moc)
         drive.id = UUID()
-        drive.date = Date()
+        drive.date = date
         drive.name = name
         drive.dayDuration = dayDuration
         drive.nightDuration = nightDuration
@@ -58,11 +58,12 @@ class DrivesDataModel: ObservableObject {
         save(drive: drive)
     }
     
-    func editDrive(drive: Drive, name: String, dayDuration: Int32, nightDuration: Int32, distance: Double) {
+    func editDrive(drive: Drive, date: Date, name: String, dayDuration: Int32, nightDuration: Int32, distance: Double) {
         drives.removeAll { previousDrive in
             drive == previousDrive
         }
         
+        drive.date = date
         drive.name = name
         drive.dayDuration = dayDuration
         drive.nightDuration = nightDuration

@@ -9,39 +9,18 @@
 import SwiftUI
 
 struct DriveDetailView: View {
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var drivesDataModel: DrivesDataModel
-    @State private var dayHours: Int = 0
-    @State private var dayMinutes: Int = 0
-    @State private var daySeconds: Int = 0
-    @State private var nightHours: Int = 0
-    @State private var nightMinutes: Int = 0
-    @State private var nightSeconds: Int = 0
-    @State private var date: Date = Date()
-    @State private var name: String = Date().formattedDate
-    @State private var distance: String = "0"
-    @State private var didUpdateDate: Bool = false
-    private var dayDurationSeconds: Int32 {
-        return Int32((TimeConverter.hoursToSeconds(from: self.dayHours)) +
-                     (TimeConverter.minutesToSeconds(from: self.dayMinutes)) +
-                     self.daySeconds)
-    }
-    private var nightDurationSeconds: Int32 {
-        return Int32((TimeConverter.hoursToSeconds(from: self.nightHours)) +
-                     (TimeConverter.minutesToSeconds(from: self.nightMinutes)) +
-                     self.nightSeconds)
-    }
-    
-    var drive: Drive?
-    
+    @StateObject var viewModel: DriveDetailViewModel
+
     var body: some View {
         Form {
             Section {
-                DatePicker(LocalizedStringKey(stringLiteral: "Date"), selection: $date)
+                DatePicker(LocalizedStringKey(stringLiteral: "Date"), selection: $viewModel.date)
                     .font(.title3)
                     .fontWeight(.bold)
-                    .onChange(of: date) { oldValue, newValue in
-                        didUpdateDate.toggle()
+                    .onChange(of: viewModel.date) {
+                        viewModel.didUpdateDate = true
                     }
             }
             Section {
@@ -49,47 +28,42 @@ struct DriveDetailView: View {
                     .font(.title3)
                     .fontWeight(.bold)
 
-
-                TextField("Name", text: $name)
+                TextField("Name", text: $viewModel.name)
                     .accessibilityIdentifier("NameField")
-                if didUpdateDate {
+                if viewModel.didUpdateDate {
                     Button("Recalculate Name") {
-                        name = date.formattedDate
-                        didUpdateDate.toggle()
+                        viewModel.recalculateName()
                     }
                 }
             }
-
             Section {
                 Text("Day Duration")
                     .font(.title3)
                     .fontWeight(.bold)
 
                 HStack {
-                    TimePickerView(title: "hours", range: 0...23, selection: $dayHours)
-                    TimePickerView(title: "min", range: 0...59, selection: $dayMinutes)
-                    TimePickerView(title: "sec", range: 0...59, selection: $daySeconds)
+                    TimePickerView(title: "hours", range: 0...23, selection: $viewModel.dayHours)
+                    TimePickerView(title: "min", range: 0...59, selection: $viewModel.dayMinutes)
+                    TimePickerView(title: "sec", range: 0...59, selection: $viewModel.daySeconds)
                 }
             }
-
             Section {
                 Text("Night Duration")
                     .font(.title3)
                     .fontWeight(.bold)
 
                 HStack {
-                    TimePickerView(title: "hours", range: 0...23, selection: $nightHours)
-                    TimePickerView(title: "min", range: 0...59, selection: $nightMinutes)
-                    TimePickerView(title: "sec", range: 0...59, selection: $nightSeconds)
+                    TimePickerView(title: "hours", range: 0...23, selection: $viewModel.nightHours)
+                    TimePickerView(title: "min", range: 0...59, selection: $viewModel.nightMinutes)
+                    TimePickerView(title: "sec", range: 0...59, selection: $viewModel.nightSeconds)
                 }
             }
-
             Section {
                 Text("Drive Distance")
                     .font(.title3)
                     .fontWeight(.bold)
 
-                TextField("Distance", text: $distance)
+                TextField("Distance", text: $viewModel.distance)
                     .keyboardType(.numberPad)
                     .accessibilityIdentifier("DistanceField")
 
@@ -98,33 +72,11 @@ struct DriveDetailView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button("Save") {
-                    submit()
+                    viewModel.submit(drivesDataModel: drivesDataModel)
                     dismiss()
                 }
                 .accessibilityIdentifier("SubmitButton")
             }
-        }
-        .onAppear() {
-            if drive != nil {
-                dayHours = TimeConverter.getHours(from: Int(drive!.dayDuration))
-                dayMinutes = TimeConverter.getMinutes(from: Int(drive!.dayDuration))
-                daySeconds = TimeConverter.getSeconds(from: Int(drive!.dayDuration))
-                nightHours = TimeConverter.getHours(from: Int(drive!.nightDuration))
-                nightMinutes = TimeConverter.getMinutes(from: Int(drive!.nightDuration))
-                nightSeconds = TimeConverter.getSeconds(from: Int(drive!.nightDuration))
-                name = drive!.name ?? ""
-                date = drive!.date!
-                distance = String(drive!.distance)
-                didUpdateDate.toggle()
-            }
-        }
-    }
-    
-    func submit() {
-        if drive != nil {
-            drivesDataModel.editDrive(drive: drive!, name: name, dayDuration: dayDurationSeconds, nightDuration: nightDurationSeconds, distance: Double(distance) ?? 0)
-        } else {
-            drivesDataModel.createDrive(name: name, dayDuration: dayDurationSeconds, nightDuration: nightDurationSeconds, distance: Double(distance) ?? 0)
         }
     }
 }
@@ -142,7 +94,8 @@ struct AddDriveView_Previews: PreviewProvider {
     static let moc = DataController.shared.container.viewContext
     
     static var previews: some View {
-        DriveDetailView()
+        let viewModel = DriveDetailViewModel()
+        DriveDetailView(viewModel: viewModel)
             .environmentObject(DrivesDataModel(moc: moc))
     }
 }

@@ -10,7 +10,7 @@ import CoreData
 
 struct LoggedDrivesView: View {
     @EnvironmentObject private var drivesDataModel: DrivesDataModel
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -25,7 +25,7 @@ struct LoggedDrivesView: View {
         .navigationTitle("Logged Drives")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                NavigationLink(destination: DriveDetailView()) {
+                NavigationLink(destination: DriveDetailView(viewModel: DriveDetailViewModel())) {
                     Label("Add drive", systemImage: "plus")
                 }.accessibilityIdentifier("AddDriveButton")
             }

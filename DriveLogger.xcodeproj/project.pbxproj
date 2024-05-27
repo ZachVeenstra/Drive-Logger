@@ -52,6 +52,7 @@
 		92AE9FD92BFC316E00776885 /* DriveServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AE9FD82BFC316E00776885 /* DriveServices.swift */; };
 		92AE9FDC2BFC382D00776885 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AE9FDB2BFC382D00776885 /* LocationManager.swift */; };
 		92B4C5C52B1EC47E009E23D2 /* DrivesDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B4C5C42B1EC47E009E23D2 /* DrivesDataModel.swift */; };
+		92C5F6352C04380000371CC0 /* DriveDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C5F6342C04380000371CC0 /* DriveDetailViewModel.swift */; };
 		92D873152B190036004B4707 /* PreviewAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92D873142B190036004B4707 /* PreviewAssets.xcassets */; };
 		92DBE6EC2B1813B700D5C62B /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DBE6EB2B1813B700D5C62B /* TimePickerView.swift */; };
 /* End PBXBuildFile section */
@@ -158,6 +159,7 @@
 		92AE9FDF2BFC46DA00776885 /* DriveLogger.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DriveLogger.entitlements; sourceTree = "<group>"; };
 		92AE9FE12BFC471500776885 /* DriveLoggerWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DriveLoggerWidgetExtension.entitlements; sourceTree = "<group>"; };
 		92B4C5C42B1EC47E009E23D2 /* DrivesDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivesDataModel.swift; sourceTree = "<group>"; };
+		92C5F6342C04380000371CC0 /* DriveDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveDetailViewModel.swift; sourceTree = "<group>"; };
 		92D873142B190036004B4707 /* PreviewAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PreviewAssets.xcassets; sourceTree = "<group>"; };
 		92DBE6EB2B1813B700D5C62B /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -393,6 +395,7 @@
 				923615D5292E9E010097B9B1 /* DriveView.swift */,
 				929253682B1BB06700CB0988 /* DriveViewModel.swift */,
 				92692EF7293BD915008D38C7 /* DriveDetailView.swift */,
+				92C5F6342C04380000371CC0 /* DriveDetailViewModel.swift */,
 				92AE9FD62BFC30B700776885 /* DriveLiveActivity.swift */,
 				92AE9FD82BFC316E00776885 /* DriveServices.swift */,
 			);
@@ -617,6 +620,7 @@
 				92B4C5C52B1EC47E009E23D2 /* DrivesDataModel.swift in Sources */,
 				9263EB16293FD6D600AC8EC3 /* DataController.swift in Sources */,
 				92AE9FDC2BFC382D00776885 /* LocationManager.swift in Sources */,
+				92C5F6352C04380000371CC0 /* DriveDetailViewModel.swift in Sources */,
 				92AE9FD92BFC316E00776885 /* DriveServices.swift in Sources */,
 				92244B832B1FEDF700BE5D80 /* LoggedDriveItemView.swift in Sources */,
 				9263EB14293FD44E00AC8EC3 /* DriveModel.xcdatamodeld in Sources */,

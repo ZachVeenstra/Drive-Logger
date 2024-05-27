@@ -57,6 +57,7 @@ class DriveViewModel: ObservableObject {
             }
             
             drivesDataModel.createDrive(
+                date: startTime,
                 name: getName(),
                 dayDuration: duration - nightDuration,
                 nightDuration: nightDuration,
