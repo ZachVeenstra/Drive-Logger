@@ -22,13 +22,13 @@ struct DriveDetailView: View {
     @State private var distance: String = "0"
     @State private var didUpdateDate: Bool = false
     private var dayDurationSeconds: Int32 {
-        return Int32((TimeConverter().hoursToSeconds(from: self.dayHours)) +
-                     (TimeConverter().minutesToSeconds(from: self.dayMinutes)) +
+        return Int32((TimeConverter.hoursToSeconds(from: self.dayHours)) +
+                     (TimeConverter.minutesToSeconds(from: self.dayMinutes)) +
                      self.daySeconds)
     }
     private var nightDurationSeconds: Int32 {
-        return Int32((TimeConverter().hoursToSeconds(from: self.nightHours)) +
-                     (TimeConverter().minutesToSeconds(from: self.nightMinutes)) +
+        return Int32((TimeConverter.hoursToSeconds(from: self.nightHours)) +
+                     (TimeConverter.minutesToSeconds(from: self.nightMinutes)) +
                      self.nightSeconds)
     }
     
@@ -48,19 +48,7 @@ struct DriveDetailView: View {
                 Text("Drive Name")
                     .font(.title3)
                     .fontWeight(.bold)
-                    .onAppear() {
-                        if drive != nil {
-                            dayHours = TimeConverter().getHours(from: Int(drive!.dayDuration))
-                            dayMinutes = TimeConverter().getMinutes(from: Int(drive!.dayDuration))
-                            daySeconds = TimeConverter().getSeconds(from: Int(drive!.dayDuration))
-                            nightHours = TimeConverter().getHours(from: Int(drive!.nightDuration))
-                            nightMinutes = TimeConverter().getMinutes(from: Int(drive!.nightDuration))
-                            nightSeconds = TimeConverter().getSeconds(from: Int(drive!.nightDuration))
-                            name = drive!.name ?? ""
-                            date = drive!.date!
-                            distance = String(drive!.distance)
-                        }
-                    }
+
 
                 TextField("Name", text: $name)
                     .accessibilityIdentifier("NameField")
@@ -114,6 +102,20 @@ struct DriveDetailView: View {
                     dismiss()
                 }
                 .accessibilityIdentifier("SubmitButton")
+            }
+        }
+        .onAppear() {
+            if drive != nil {
+                dayHours = TimeConverter.getHours(from: Int(drive!.dayDuration))
+                dayMinutes = TimeConverter.getMinutes(from: Int(drive!.dayDuration))
+                daySeconds = TimeConverter.getSeconds(from: Int(drive!.dayDuration))
+                nightHours = TimeConverter.getHours(from: Int(drive!.nightDuration))
+                nightMinutes = TimeConverter.getMinutes(from: Int(drive!.nightDuration))
+                nightSeconds = TimeConverter.getSeconds(from: Int(drive!.nightDuration))
+                name = drive!.name ?? ""
+                date = drive!.date!
+                distance = String(drive!.distance)
+                didUpdateDate.toggle()
             }
         }
     }

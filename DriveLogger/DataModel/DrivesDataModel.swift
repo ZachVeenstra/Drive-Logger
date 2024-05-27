@@ -106,18 +106,18 @@ class DrivesDataModel: ObservableObject {
     }
     
     func getTotalMinutes() -> Int {
-        return TimeConverter().getMinutes(from: getTotalSeconds())
+        return TimeConverter.getMinutes(from: getTotalSeconds())
     }
     
     func getTotalHours() -> Int {
-        return TimeConverter().getHours(from: getTotalSeconds())
+        return TimeConverter.getHours(from: getTotalSeconds())
     }
     
     func getTotalNightMinutes() -> Int {
-        return TimeConverter().getMinutes(from: getTotalNightSeconds())
+        return TimeConverter.getMinutes(from: getTotalNightSeconds())
     }
     
     func getTotalNightHours() -> Int {
-        return TimeConverter().getHours(from: getTotalNightSeconds())
+        return TimeConverter.getHours(from: getTotalNightSeconds())
     }
 }
