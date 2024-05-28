@@ -61,7 +61,8 @@ class DriveViewModel: ObservableObject {
                 name: getName(),
                 dayDuration: duration - nightDuration,
                 nightDuration: nightDuration,
-                distance: 0
+                distance: 0,
+                notes: ""
             )
         
             await self.endLiveActivity()

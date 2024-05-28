@@ -68,6 +68,13 @@ struct DriveDetailView: View {
                     .accessibilityIdentifier("DistanceField")
 
             }
+            Section {
+                Text("Notes")
+                    .font(.title3)
+                    .fontWeight(.bold)
+
+                TextEditor(text: $viewModel.notes)
+            }
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {

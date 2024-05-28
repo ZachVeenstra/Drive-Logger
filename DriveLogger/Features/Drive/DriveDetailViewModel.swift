@@ -19,6 +19,7 @@ class DriveDetailViewModel: ObservableObject {
     @Published var date: Date
     @Published var name: String
     @Published var distance: String
+    @Published var notes: String
     @Published var didUpdateDate: Bool
     private var drive: Drive?
 
@@ -32,6 +33,7 @@ class DriveDetailViewModel: ObservableObject {
                      (TimeConverter.minutesToSeconds(from: self.nightMinutes)) +
                      self.nightSeconds)
     }
+    
     init() {
         dayHours = 0
         dayMinutes = 0
@@ -42,6 +44,7 @@ class DriveDetailViewModel: ObservableObject {
         date = Date()
         name = Date().formattedDate
         distance = "0"
+        notes = ""
         drive = nil
         didUpdateDate = false
     }
@@ -56,15 +59,27 @@ class DriveDetailViewModel: ObservableObject {
         name = drive.name ?? ""
         date = drive.date ?? Date()
         distance = String(drive.distance)
+        notes = drive.notes ?? ""
         self.drive = drive
         didUpdateDate = false
     }
 
     func submit(drivesDataModel: DrivesDataModel) {
         if let drive {
-            drivesDataModel.editDrive(drive: drive, date: date, name: name, dayDuration: dayDurationSeconds, nightDuration: nightDurationSeconds, distance: Double(distance) ?? 0)
+            drivesDataModel.editDrive(drive: drive, 
+                                      date: date,
+                                      name: name,
+                                      dayDuration: dayDurationSeconds,
+                                      nightDuration: nightDurationSeconds,
+                                      distance: Double(distance) ?? 0,
+                                      notes: notes)
         } else {
-            drivesDataModel.createDrive(date: date, name: name, dayDuration: dayDurationSeconds, nightDuration: nightDurationSeconds, distance: Double(distance) ?? 0)
+            drivesDataModel.createDrive(date: date, 
+                                        name: name,
+                                        dayDuration: dayDurationSeconds,
+                                        nightDuration: nightDurationSeconds,
+                                        distance: Double(distance) ?? 0,
+                                        notes: notes)
         }
     }
 
