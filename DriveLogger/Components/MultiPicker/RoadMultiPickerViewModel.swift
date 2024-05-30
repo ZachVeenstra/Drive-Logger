@@ -9,26 +9,63 @@ import Foundation
 
 class RoadMultiPickerViewModel: ObservableObject {
     @Published var options = RoadTypes.allCases
-    @Published var selectedOptions: Set<RoadTypes>
+
+    @Published var city: Bool
+    @Published var highway: Bool
+    @Published var multilane: Bool
+    @Published var residential: Bool
+    @Published var roundabout: Bool
+    @Published var rural: Bool
 
     init() {
-        self.selectedOptions = Set<RoadTypes>()
+        self.city = false
+        self.highway = false
+        self.multilane = false
+        self.residential = false
+        self.roundabout = false
+        self.rural = false
     }
 
-    init(selectedOptions: Set<RoadTypes>) {
-        self.selectedOptions = selectedOptions
+    init(city: Bool, highway: Bool, multilane: Bool, residential: Bool, roundabout: Bool, rural: Bool) {
+        self.city = city
+        self.highway = highway
+        self.multilane = multilane
+        self.residential = residential
+        self.roundabout = roundabout
+        self.rural = rural
     }
 
     func getImageResource(for option: RoadTypes) -> String {
-        return self.selectedOptions.contains(option.id) ?
-            option.selectedSymbol : option.symbol
+        switch option {
+        case .city:
+            return city ? option.selectedSymbol : option.symbol
+        case .highway:
+            return highway ? option.selectedSymbol : option.symbol
+        case .multilane:
+            return multilane ? option.selectedSymbol : option.symbol
+        case .residential:
+            return residential ? option.selectedSymbol : option.symbol
+        case .roundabout:
+            return roundabout ? option.selectedSymbol : option.symbol
+        case .rural:
+            return rural ? option.selectedSymbol : option.symbol
+        }
     }
 
     func toggleOption(option: RoadTypes) {
-        if self.selectedOptions.contains(option.id) {
-            self.selectedOptions.remove(option.id)
-        } else {
-            self.selectedOptions.insert(option.id)
+        switch option {
+        case .city:
+            self.city.toggle()
+        case .highway:
+            self.highway.toggle()
+        case .multilane:
+            self.multilane.toggle()
+        case .residential:
+            self.residential.toggle()
+        case .roundabout:
+            self.roundabout.toggle()
+        case .rural:
+            self.rural.toggle()
         }
     }
 }

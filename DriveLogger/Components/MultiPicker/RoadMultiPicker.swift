@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct RoadMultiPicker: View {
-    @StateObject var viewModel: RoadMultiPickerViewModel
+    @ObservedObject var viewModel: RoadMultiPickerViewModel
     let columns = [
-        GridItem(.flexible(), spacing: 0),
-        GridItem(.flexible(), spacing: 0)
+        GridItem(.flexible(), spacing: -40),
+        GridItem(.flexible(), spacing: -40),
+        GridItem(.flexible(), spacing: -40)
     ]
 
     var body: some View {
-        LazyVGrid(columns: columns) {
+        LazyVGrid(columns: columns, spacing: 0) {
             ForEach(viewModel.options) { option in
                 let imageResource = viewModel.getImageResource(for: option)
 
@@ -27,13 +28,12 @@ struct RoadMultiPicker: View {
             }
             .padding()
         }
-        .frame(maxWidth: 215)
     }
 }
 
 
 struct RoadMultiPicker_Previews: PreviewProvider {
     static var previews: some View {
-        RoadMultiPicker(viewModel: RoadMultiPickerViewModel(selectedOptions: [RoadTypes.city, RoadTypes.residential]))
+        RoadMultiPicker(viewModel: RoadMultiPickerViewModel())
     }
 }

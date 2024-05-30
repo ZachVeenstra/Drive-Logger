@@ -58,10 +58,11 @@ class DrivesDataModel: ObservableObject {
         }
     }
 
-    func createDrive(date: Date, name: String, dayDuration: Int32, nightDuration: Int32, distance: Double, weather: WeatherType, notes: String) {
+    func createDrive(date: Date, name: String, dayDuration: Int32, nightDuration: Int32, distance: Double, weather: WeatherType, road: RoadType, notes: String) {
         let drive = Drive(context: moc)
         drive.id = UUID()
         drive.weather = weather
+        drive.road = road
 
         editDrive(drive: drive,
                   date: date,
@@ -89,6 +90,9 @@ class DrivesDataModel: ObservableObject {
         if let weather = drive.weather {
             moc.delete(weather)
         }
+        if let road = drive.road {
+            moc.delete(road)
+        }
         moc.delete(drive)
 
         do {
@@ -114,6 +118,25 @@ class DrivesDataModel: ObservableObject {
         weather.isClear = isClear
         weather.isRain = isRain
         weather.isSnow = isSnow
+
+        save()
+    }
+
+    func createRoad(roadViewModel: RoadMultiPickerViewModel) -> RoadType {
+        let road = RoadType(context: moc)
+
+        editRoad(road: road, roadViewModel: roadViewModel)
+
+        return road
+    }
+
+    func editRoad(road: RoadType, roadViewModel: RoadMultiPickerViewModel) {
+        road.city = roadViewModel.city
+        road.highway = roadViewModel.highway
+        road.multilane = roadViewModel.multilane
+        road.residential = roadViewModel.residential
+        road.roundabout = roadViewModel.roundabout
+        road.rural = roadViewModel.rural
 
         save()
     }

@@ -17,6 +17,14 @@ struct DriveDetailView: View {
         VStack {
             Form {
                 Section {
+                    RoadMultiPicker(viewModel: viewModel.roadViewModel)
+                } header: {
+                    Text("Road Types")
+                        .font(.title3)
+                        .fontWeight(.bold)
+                }
+
+                Section {
                     WeatherMultiPicker(isClear: $viewModel.isClear, isRain: $viewModel.isRain, isSnow: $viewModel.isSnow)
                 } header: {
                     Text("Weather")
