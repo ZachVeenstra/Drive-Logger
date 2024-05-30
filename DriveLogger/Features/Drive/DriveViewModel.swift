@@ -56,12 +56,15 @@ class DriveViewModel: ObservableObject {
                 nightDuration = 0
             }
             
+            // TODO: Fill out with real data.
+            let weather = drivesDataModel.createWeather(isClear: true, isRain: false, isSnow: false)
             drivesDataModel.createDrive(
                 date: startTime,
                 name: getName(),
                 dayDuration: duration - nightDuration,
                 nightDuration: nightDuration,
                 distance: 0,
+                weather: weather,
                 notes: ""
             )
         

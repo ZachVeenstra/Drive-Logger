@@ -21,10 +21,9 @@ class DrivesDataModel: ObservableObject {
         fetchDrives()
     }
     
-    private func save(drive: Drive) {
+    private func save() {
         do {
             try moc.save()
-            drives.append(drive)
         } catch {
             print("Failed to save")
         }
@@ -40,30 +39,42 @@ class DrivesDataModel: ObservableObject {
         }
     }
 
+    func fetchWeathers() {
+        let request = WeatherType.fetchRequest()
+        if let weathers = try? moc.fetch(request) {
+            if let weather = weathers.first {
+                if let drive = weather.drive {
+                    print("\(drive.name ?? ""): \(weather.description)")
+                } else {
+                    print("No drive attatched...")
+                }
+            }
+        }
+    }
+
     @objc private func fetchUpdates(_ notification: Notification) {
         moc.perform {
             self.fetchDrives()
         }
     }
 
-    func createDrive(date: Date, name: String, dayDuration: Int32, nightDuration: Int32, distance: Double, notes: String) {
+    func createDrive(date: Date, name: String, dayDuration: Int32, nightDuration: Int32, distance: Double, weather: WeatherType, notes: String) {
         let drive = Drive(context: moc)
         drive.id = UUID()
-        drive.date = date
-        drive.name = name
-        drive.dayDuration = dayDuration
-        drive.nightDuration = nightDuration
-        drive.distance = distance
-        drive.notes = notes
+        drive.weather = weather
 
-        save(drive: drive)
+        editDrive(drive: drive,
+                  date: date,
+                  name: name,
+                  dayDuration: dayDuration,
+                  nightDuration: nightDuration,
+                  distance: distance,
+                  notes: notes)
+
+        drives.append(drive)
     }
     
     func editDrive(drive: Drive, date: Date, name: String, dayDuration: Int32, nightDuration: Int32, distance: Double, notes: String) {
-        drives.removeAll { previousDrive in
-            drive == previousDrive
-        }
-        
         drive.date = date
         drive.name = name
         drive.dayDuration = dayDuration
@@ -71,10 +82,13 @@ class DrivesDataModel: ObservableObject {
         drive.distance = distance
         drive.notes = notes
 
-        save(drive: drive)
+        save()
     }
 
     func deleteDrive(drive: Drive) {
+        if let weather = drive.weather {
+            moc.delete(weather)
+        }
         moc.delete(drive)
 
         do {
@@ -87,7 +101,23 @@ class DrivesDataModel: ObservableObject {
             print("Error deleting drive")
         }
     }
-    
+
+    func createWeather(isClear: Bool, isRain: Bool, isSnow: Bool) -> WeatherType {
+        let weather = WeatherType(context: moc)
+        
+        editWeather(weather: weather, isClear: isClear, isRain: isRain, isSnow: isSnow)
+
+        return weather
+    }
+
+    func editWeather(weather: WeatherType, isClear: Bool, isRain: Bool, isSnow: Bool) {
+        weather.isClear = isClear
+        weather.isRain = isRain
+        weather.isSnow = isSnow
+
+        save()
+    }
+
     func getTotalSeconds() -> Int {
         var totalSeconds: Int32 = 0
         

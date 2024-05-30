@@ -14,66 +14,86 @@ struct DriveDetailView: View {
     @StateObject var viewModel: DriveDetailViewModel
 
     var body: some View {
-        Form {
-            Section {
-                DatePicker(LocalizedStringKey(stringLiteral: "Date"), selection: $viewModel.date)
-                    .font(.title3)
-                    .fontWeight(.bold)
-                    .onChange(of: viewModel.date) {
-                        viewModel.didUpdateDate = true
+        VStack {
+            Form {
+                Section {
+                    WeatherMultiPicker(isClear: $viewModel.isClear, isRain: $viewModel.isRain, isSnow: $viewModel.isSnow)
+                } header: {
+                    Text("Weather")
+                        .font(.title3)
+                        .fontWeight(.bold)
+                }
+
+                Section {
+                    DatePicker(LocalizedStringKey(stringLiteral: "Date"), selection: $viewModel.date)
+                        .font(.title3)
+                        .fontWeight(.bold)
+                        .onChange(of: viewModel.date) {
+                            viewModel.didUpdateDate = true
+                        }
+                        .labelsHidden()
+                } header: {
+                    Text("Date")
+                        .font(.title3)
+                        .fontWeight(.bold)
+                }
+
+                Section {
+                    TextField("Name", text: $viewModel.name)
+                        .accessibilityIdentifier("NameField")
+                    if viewModel.didUpdateDate {
+                        Button("Recalculate Name") {
+                            viewModel.recalculateName()
+                        }
                     }
-            }
-            Section {
-                Text("Drive Name")
-                    .font(.title3)
-                    .fontWeight(.bold)
+                } header: {
+                    Text("Drive Name")
+                        .font(.title3)
+                        .fontWeight(.bold)
+                }
 
-                TextField("Name", text: $viewModel.name)
-                    .accessibilityIdentifier("NameField")
-                if viewModel.didUpdateDate {
-                    Button("Recalculate Name") {
-                        viewModel.recalculateName()
+                Section {
+                    HStack {
+                        TimePickerView(title: "hours", range: 0...23, selection: $viewModel.dayHours)
+                        TimePickerView(title: "min", range: 0...59, selection: $viewModel.dayMinutes)
+                        TimePickerView(title: "sec", range: 0...59, selection: $viewModel.daySeconds)
                     }
+                } header: {
+                    Text("Day Duration")
+                        .font(.title3)
+                        .fontWeight(.bold)
                 }
-            }
-            Section {
-                Text("Day Duration")
-                    .font(.title3)
-                    .fontWeight(.bold)
 
-                HStack {
-                    TimePickerView(title: "hours", range: 0...23, selection: $viewModel.dayHours)
-                    TimePickerView(title: "min", range: 0...59, selection: $viewModel.dayMinutes)
-                    TimePickerView(title: "sec", range: 0...59, selection: $viewModel.daySeconds)
+                Section {
+                    HStack {
+                        TimePickerView(title: "hours", range: 0...23, selection: $viewModel.nightHours)
+                        TimePickerView(title: "min", range: 0...59, selection: $viewModel.nightMinutes)
+                        TimePickerView(title: "sec", range: 0...59, selection: $viewModel.nightSeconds)
+                    }
+                } header: {
+                    Text("Night Duration")
+                        .font(.title3)
+                        .fontWeight(.bold)
                 }
-            }
-            Section {
-                Text("Night Duration")
-                    .font(.title3)
-                    .fontWeight(.bold)
 
-                HStack {
-                    TimePickerView(title: "hours", range: 0...23, selection: $viewModel.nightHours)
-                    TimePickerView(title: "min", range: 0...59, selection: $viewModel.nightMinutes)
-                    TimePickerView(title: "sec", range: 0...59, selection: $viewModel.nightSeconds)
+                Section {
+                    TextField("Distance", text: $viewModel.distance)
+                        .keyboardType(.numberPad)
+                        .accessibilityIdentifier("DistanceField")
+
+                } header: {
+                    Text("Drive Distance")
+                        .font(.title3)
+                        .fontWeight(.bold)
                 }
-            }
-            Section {
-                Text("Drive Distance")
-                    .font(.title3)
-                    .fontWeight(.bold)
 
-                TextField("Distance", text: $viewModel.distance)
-                    .keyboardType(.numberPad)
-                    .accessibilityIdentifier("DistanceField")
-
-            }
-            Section {
-                Text("Notes")
-                    .font(.title3)
-                    .fontWeight(.bold)
-
-                TextEditor(text: $viewModel.notes)
+                Section {
+                    TextEditor(text: $viewModel.notes)
+                } header: {
+                    Text("Notes")
+                        .font(.title3)
+                        .fontWeight(.bold)
+                }
             }
         }
         .toolbar {
@@ -87,15 +107,6 @@ struct DriveDetailView: View {
         }
     }
 }
-
-
-private let dateFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .short
-    return formatter
-}()
-
 
 struct AddDriveView_Previews: PreviewProvider {
     static let moc = DataController.shared.container.viewContext

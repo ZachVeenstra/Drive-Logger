@@ -19,6 +19,11 @@ class DriveDetailViewModel: ObservableObject {
     @Published var date: Date
     @Published var name: String
     @Published var distance: String
+    @Published var weatherType: WeatherTypes
+    @Published var roadType: RoadTypes?
+    @Published var isClear: Bool
+    @Published var isRain: Bool
+    @Published var isSnow: Bool
     @Published var notes: String
     @Published var didUpdateDate: Bool
     private var drive: Drive?
@@ -44,6 +49,11 @@ class DriveDetailViewModel: ObservableObject {
         date = Date()
         name = Date().formattedDate
         distance = "0"
+        weatherType = WeatherTypes.clear
+        roadType = nil
+        isClear = false
+        isRain = false
+        isSnow = false
         notes = ""
         drive = nil
         didUpdateDate = false
@@ -59,6 +69,11 @@ class DriveDetailViewModel: ObservableObject {
         name = drive.name ?? ""
         date = drive.date ?? Date()
         distance = String(drive.distance)
+        weatherType = WeatherTypes.clear
+        roadType = nil
+        isClear = drive.weather?.isClear ?? false
+        isRain = drive.weather?.isRain ?? false
+        isSnow = drive.weather?.isSnow ?? false
         notes = drive.notes ?? ""
         self.drive = drive
         didUpdateDate = false
@@ -66,7 +81,13 @@ class DriveDetailViewModel: ObservableObject {
 
     func submit(drivesDataModel: DrivesDataModel) {
         if let drive {
-            drivesDataModel.editDrive(drive: drive, 
+            if let weather = drive.weather {
+                drivesDataModel.editWeather(weather: weather, isClear: isClear, isRain: isRain, isSnow: isSnow)
+            } else {
+                let weather = drivesDataModel.createWeather(isClear: isClear, isRain: isRain, isSnow: isSnow)
+                drive.weather = weather
+            }
+            drivesDataModel.editDrive(drive: drive,
                                       date: date,
                                       name: name,
                                       dayDuration: dayDurationSeconds,
@@ -74,11 +95,13 @@ class DriveDetailViewModel: ObservableObject {
                                       distance: Double(distance) ?? 0,
                                       notes: notes)
         } else {
-            drivesDataModel.createDrive(date: date, 
+            let weather = drivesDataModel.createWeather(isClear: isClear, isRain: isRain, isSnow: isSnow)
+            drivesDataModel.createDrive(date: date,
                                         name: name,
                                         dayDuration: dayDurationSeconds,
                                         nightDuration: nightDurationSeconds,
                                         distance: Double(distance) ?? 0,
+                                        weather: weather,
                                         notes: notes)
         }
     }
