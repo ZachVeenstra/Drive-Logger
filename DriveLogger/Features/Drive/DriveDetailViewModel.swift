@@ -19,9 +19,7 @@ class DriveDetailViewModel: ObservableObject {
     @Published var date: Date
     @Published var name: String
     @Published var distance: String
-    @Published var isClear: Bool
-    @Published var isRain: Bool
-    @Published var isSnow: Bool
+    @Published var weatherViewModel: WeatherMultiPickerViewModel
     @Published var roadViewModel: RoadMultiPickerViewModel
     @Published var notes: String
     @Published var didUpdateDate: Bool
@@ -48,15 +46,8 @@ class DriveDetailViewModel: ObservableObject {
         date = Date()
         name = Date().formattedDate
         distance = "0"
-        isClear = false
-        isRain = false
-        isSnow = false
-        roadViewModel = RoadMultiPickerViewModel(city: false, 
-                                                 highway: false,
-                                                 multilane: false,
-                                                 residential: false,
-                                                 roundabout: false,
-                                                 rural: false)
+        weatherViewModel = WeatherMultiPickerViewModel()
+        roadViewModel = RoadMultiPickerViewModel()
         notes = ""
         drive = nil
         didUpdateDate = false
@@ -72,9 +63,9 @@ class DriveDetailViewModel: ObservableObject {
         name = drive.name ?? ""
         date = drive.date ?? Date()
         distance = String(drive.distance)
-        isClear = drive.weather?.isClear ?? false
-        isRain = drive.weather?.isRain ?? false
-        isSnow = drive.weather?.isSnow ?? false
+        weatherViewModel = WeatherMultiPickerViewModel(clear: drive.weather?.isClear ?? false,
+                                                       rain: drive.weather?.isRain ?? false,
+                                                       snow: drive.weather?.isSnow ?? false)
         roadViewModel = RoadMultiPickerViewModel(city: drive.road?.highway ?? false,
                                                  highway: drive.road?.highway ?? false,
                                                  multilane: drive.road?.multilane ?? false,
@@ -88,39 +79,23 @@ class DriveDetailViewModel: ObservableObject {
 
     func submit(drivesDataModel: DrivesDataModel) {
         if let drive {
-
-            if let weather = drive.weather {
-                drivesDataModel.editWeather(weather: weather, isClear: isClear, isRain: isRain, isSnow: isSnow)
-            } else {
-                let weather = drivesDataModel.createWeather(isClear: isClear, isRain: isRain, isSnow: isSnow)
-                drive.weather = weather
-            }
-
-            if let road = drive.road {
-                drivesDataModel.editRoad(road: road, roadViewModel: roadViewModel)
-            } else {
-                let road = drivesDataModel.createRoad(roadViewModel: roadViewModel)
-                drive.road = road
-            }
-
             drivesDataModel.editDrive(drive: drive,
                                       date: date,
                                       name: name,
                                       dayDuration: dayDurationSeconds,
                                       nightDuration: nightDurationSeconds,
                                       distance: Double(distance) ?? 0,
+                                      weatherViewModel: weatherViewModel,
+                                      roadViewModel: roadViewModel,
                                       notes: notes)
         } else {
-            let weather = drivesDataModel.createWeather(isClear: isClear, isRain: isRain, isSnow: isSnow)
-            let road = drivesDataModel.createRoad(roadViewModel: roadViewModel)
-
             drivesDataModel.createDrive(date: date,
                                         name: name,
                                         dayDuration: dayDurationSeconds,
                                         nightDuration: nightDurationSeconds,
                                         distance: Double(distance) ?? 0,
-                                        weather: weather,
-                                        road: road,
+                                        weatherViewModel: weatherViewModel,
+                                        roadViewModel: roadViewModel,
                                         notes: notes)
         }
     }

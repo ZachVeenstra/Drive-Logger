@@ -8,60 +8,33 @@
 import SwiftUI
 
 struct WeatherMultiPicker: View {
-    @Binding var isClear: Bool
-    @Binding var isRain: Bool
-    @Binding var isSnow: Bool
+    @ObservedObject var viewModel: WeatherMultiPickerViewModel
+    let columns = [
+        GridItem(.flexible(), spacing: -40),
+        GridItem(.flexible(), spacing: -40),
+        GridItem(.flexible(), spacing: -40),
+        GridItem(.flexible(), spacing: -40)
+    ]
 
     var body: some View {
-        HStack {
-            ForEach(WeatherTypes.allCases) { option in
-                let imageResource = getImageResource(for: option)
+        LazyVGrid(columns: columns, spacing: 0) {
+            ForEach(viewModel.options) { option in
+                let imageResource = viewModel.getImageResource(for: option)
 
                 MultipleSelectionItem(title: option.description,
                                       imageResource: imageResource
                 ) {
-                    toggleOption(option: option)
+                    viewModel.toggleOption(option: option)
                 }
             }
             .padding()
         }
     }
-
-    private func getImageResource(for option: WeatherTypes) -> String {
-        switch option {
-        case .clear:
-            return isClear ? option.selectedSymbol : option.symbol
-        case .rain:
-            return isRain ? option.selectedSymbol : option.symbol
-        case .snow:
-            return isSnow ? option.selectedSymbol : option.symbol
-        }
-    }
-
-    private func toggleOption(option: WeatherTypes) {
-        switch option {
-        case .clear:
-            self.isClear.toggle()
-        case .rain:
-            self.isRain.toggle()
-        case .snow:
-            self.isSnow.toggle()
-        }
-    }
 }
 
-struct WeatherMultiPickerContentPreview: View {
-    @State var isClear: Bool = true
-    @State var isRain: Bool = false
-    @State var isSnow: Bool = false
 
-    var body: some View {
-        WeatherMultiPicker(isClear: $isClear, isRain: $isRain, isSnow: $isSnow)
-    }
-}
-
-struct WeatherMultiPicker_Previews: PreviewProvider {
+struct WeaterMultiPicker_Previews: PreviewProvider {
     static var previews: some View {
-        WeatherMultiPickerContentPreview()
+        WeatherMultiPicker(viewModel: WeatherMultiPickerViewModel())
     }
 }

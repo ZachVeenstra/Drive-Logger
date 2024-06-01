@@ -57,16 +57,16 @@ class DriveViewModel: ObservableObject {
             }
             
             // TODO: Fill out with real data.
-            let weather = drivesDataModel.createWeather(isClear: true, isRain: false, isSnow: false)
-            let road = drivesDataModel.createRoad(roadViewModel: RoadMultiPickerViewModel())
+            let weatherViewModel = WeatherMultiPickerViewModel()
+            let roadViewModel = RoadMultiPickerViewModel()
             drivesDataModel.createDrive(
                 date: startTime,
                 name: getName(),
                 dayDuration: duration - nightDuration,
                 nightDuration: nightDuration,
                 distance: 0,
-                weather: weather,
-                road: road,
+                weatherViewModel: weatherViewModel,
+                roadViewModel: roadViewModel,
                 notes: ""
             )
         

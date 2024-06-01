@@ -58,11 +58,11 @@ class DrivesDataModel: ObservableObject {
         }
     }
 
-    func createDrive(date: Date, name: String, dayDuration: Int32, nightDuration: Int32, distance: Double, weather: WeatherType, road: RoadType, notes: String) {
+    func createDrive(date: Date, name: String, dayDuration: Int32, nightDuration: Int32, distance: Double, weatherViewModel: WeatherMultiPickerViewModel, roadViewModel: RoadMultiPickerViewModel, notes: String) {
         let drive = Drive(context: moc)
         drive.id = UUID()
-        drive.weather = weather
-        drive.road = road
+        drive.weather = createWeather(weatherViewModel: weatherViewModel)
+        drive.road = createRoad(roadViewModel: roadViewModel)
 
         editDrive(drive: drive,
                   date: date,
@@ -70,18 +70,32 @@ class DrivesDataModel: ObservableObject {
                   dayDuration: dayDuration,
                   nightDuration: nightDuration,
                   distance: distance,
+                  weatherViewModel: weatherViewModel,
+                  roadViewModel: roadViewModel,
                   notes: notes)
 
         drives.append(drive)
     }
     
-    func editDrive(drive: Drive, date: Date, name: String, dayDuration: Int32, nightDuration: Int32, distance: Double, notes: String) {
+    func editDrive(drive: Drive, date: Date, name: String, dayDuration: Int32, nightDuration: Int32, distance: Double, weatherViewModel: WeatherMultiPickerViewModel, roadViewModel: RoadMultiPickerViewModel, notes: String) {
         drive.date = date
         drive.name = name
         drive.dayDuration = dayDuration
         drive.nightDuration = nightDuration
         drive.distance = distance
         drive.notes = notes
+
+        if let weather = drive.weather {
+            editWeather(weather: weather, weatherViewModel: weatherViewModel)
+        } else {
+            drive.weather = createWeather(weatherViewModel: weatherViewModel)
+        }
+
+        if let road = drive.road {
+            editRoad(road: road, roadViewModel: roadViewModel)
+        } else {
+            drive.road = createRoad(roadViewModel: roadViewModel)
+        }
 
         save()
     }
@@ -106,23 +120,23 @@ class DrivesDataModel: ObservableObject {
         }
     }
 
-    func createWeather(isClear: Bool, isRain: Bool, isSnow: Bool) -> WeatherType {
+    func createWeather(weatherViewModel: WeatherMultiPickerViewModel) -> WeatherType {
         let weather = WeatherType(context: moc)
         
-        editWeather(weather: weather, isClear: isClear, isRain: isRain, isSnow: isSnow)
+        editWeather(weather: weather, weatherViewModel: weatherViewModel)
 
         return weather
     }
 
-    func editWeather(weather: WeatherType, isClear: Bool, isRain: Bool, isSnow: Bool) {
-        weather.isClear = isClear
-        weather.isRain = isRain
-        weather.isSnow = isSnow
+    func editWeather(weather: WeatherType, weatherViewModel: WeatherMultiPickerViewModel) {
+        weather.isClear = weatherViewModel.isClear
+        weather.isRain = weatherViewModel.isRain
+        weather.isSnow = weatherViewModel.isSnow
 
         save()
     }
 
-    func createRoad(roadViewModel: RoadMultiPickerViewModel) -> RoadType {
+    private func createRoad(roadViewModel: RoadMultiPickerViewModel) -> RoadType {
         let road = RoadType(context: moc)
 
         editRoad(road: road, roadViewModel: roadViewModel)
@@ -130,7 +144,7 @@ class DrivesDataModel: ObservableObject {
         return road
     }
 
-    func editRoad(road: RoadType, roadViewModel: RoadMultiPickerViewModel) {
+    private func editRoad(road: RoadType, roadViewModel: RoadMultiPickerViewModel) {
         road.city = roadViewModel.city
         road.highway = roadViewModel.highway
         road.multilane = roadViewModel.multilane
