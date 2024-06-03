@@ -35,7 +35,7 @@ class DriveViewModel: ObservableObject {
     }
     
     func getName() -> String {
-        return "Drive on \(dateFormatter.string(from: Date()))"
+        return Date().formattedDate
     }
     
     func endDrive(drivesDataModel: DrivesDataModel) -> Void {
@@ -56,14 +56,45 @@ class DriveViewModel: ObservableObject {
                 nightDuration = 0
             }
             
+            // TODO: Fill out with real data.
+            let weatherViewModel = WeatherMultiPickerViewModel()
+            let roadViewModel = RoadMultiPickerViewModel()
             drivesDataModel.createDrive(
+                date: startTime,
                 name: getName(),
                 dayDuration: duration - nightDuration,
                 nightDuration: nightDuration,
-                distance: 0
+                distance: 0,
+                weatherViewModel: weatherViewModel,
+                roadViewModel: roadViewModel,
+                notes: ""
             )
         
             await self.endLiveActivity()
         }
     }
 }
+
+extension Date {
+    var formattedDate: String {
+        let partOfDay: String
+
+        switch Calendar.current.component(.hour, from: self) {
+        case 5...11:
+            partOfDay = "Morning"
+        case 12...16:
+            partOfDay = "Afternoon"
+        case 17...20:
+            partOfDay = "Evening"
+        case 21...24, 0...4:
+            partOfDay = "Night"
+        default:
+            partOfDay = self.description
+        }
+
+        let day = self.formatted(Date.FormatStyle().weekday(.wide))
+
+        return "\(day) \(partOfDay) Drive"
+    }
+}
+

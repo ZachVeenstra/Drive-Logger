@@ -16,17 +16,14 @@ class DrivesDataModel: ObservableObject {
 
     init(moc: NSManagedObjectContext) {
         self.moc = moc
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(fetchUpdates(_:)), name: .NSManagedObjectContextObjectsDidChange, object: nil)
+
         fetchDrives()
     }
     
-    private func save(drive: Drive) {
+    private func save() {
         do {
             try moc.save()
-            drives.append(drive)
-            drives.sort {
-                $0.date! > $1.date!
-            }
         } catch {
             print("Failed to save")
         }
@@ -34,37 +31,82 @@ class DrivesDataModel: ObservableObject {
 
     func fetchDrives() {
         let request = Drive.fetchRequest()
-        if let drives = try? moc.fetch(request) {
+        if var drives = try? moc.fetch(request) {
+            drives.sort {
+                $0.date! > $1.date!
+            }
             self.drives = drives
         }
     }
 
-    func createDrive(name: String, dayDuration: Int32, nightDuration: Int32, distance: Double) {
+    func fetchWeathers() {
+        let request = WeatherType.fetchRequest()
+        if let weathers = try? moc.fetch(request) {
+            if let weather = weathers.first {
+                if let drive = weather.drive {
+                    print("\(drive.name ?? ""): \(weather.description)")
+                } else {
+                    print("No drive attatched...")
+                }
+            }
+        }
+    }
+
+    @objc private func fetchUpdates(_ notification: Notification) {
+        moc.perform {
+            self.fetchDrives()
+        }
+    }
+
+    func createDrive(date: Date, name: String, dayDuration: Int32, nightDuration: Int32, distance: Double, weatherViewModel: WeatherMultiPickerViewModel, roadViewModel: RoadMultiPickerViewModel, notes: String) {
         let drive = Drive(context: moc)
         drive.id = UUID()
-        drive.date = Date()
-        drive.name = name
-        drive.dayDuration = dayDuration
-        drive.nightDuration = nightDuration
-        drive.distance = distance
+        drive.weather = createWeather(weatherViewModel: weatherViewModel)
+        drive.road = createRoad(roadViewModel: roadViewModel)
 
-        save(drive: drive)
+        editDrive(drive: drive,
+                  date: date,
+                  name: name,
+                  dayDuration: dayDuration,
+                  nightDuration: nightDuration,
+                  distance: distance,
+                  weatherViewModel: weatherViewModel,
+                  roadViewModel: roadViewModel,
+                  notes: notes)
+
+        drives.append(drive)
     }
     
-    func editDrive(drive: Drive, name: String, dayDuration: Int32, nightDuration: Int32, distance: Double) {
-        drives.removeAll { previousDrive in
-            drive == previousDrive
-        }
-        
+    func editDrive(drive: Drive, date: Date, name: String, dayDuration: Int32, nightDuration: Int32, distance: Double, weatherViewModel: WeatherMultiPickerViewModel, roadViewModel: RoadMultiPickerViewModel, notes: String) {
+        drive.date = date
         drive.name = name
         drive.dayDuration = dayDuration
         drive.nightDuration = nightDuration
         drive.distance = distance
-        
-        save(drive: drive)
+        drive.notes = notes
+
+        if let weather = drive.weather {
+            editWeather(weather: weather, weatherViewModel: weatherViewModel)
+        } else {
+            drive.weather = createWeather(weatherViewModel: weatherViewModel)
+        }
+
+        if let road = drive.road {
+            editRoad(road: road, roadViewModel: roadViewModel)
+        } else {
+            drive.road = createRoad(roadViewModel: roadViewModel)
+        }
+
+        save()
     }
 
     func deleteDrive(drive: Drive) {
+        if let weather = drive.weather {
+            moc.delete(weather)
+        }
+        if let road = drive.road {
+            moc.delete(road)
+        }
         moc.delete(drive)
 
         do {
@@ -77,7 +119,42 @@ class DrivesDataModel: ObservableObject {
             print("Error deleting drive")
         }
     }
-    
+
+    func createWeather(weatherViewModel: WeatherMultiPickerViewModel) -> WeatherType {
+        let weather = WeatherType(context: moc)
+        
+        editWeather(weather: weather, weatherViewModel: weatherViewModel)
+
+        return weather
+    }
+
+    func editWeather(weather: WeatherType, weatherViewModel: WeatherMultiPickerViewModel) {
+        weather.isClear = weatherViewModel.isClear
+        weather.isRain = weatherViewModel.isRain
+        weather.isSnow = weatherViewModel.isSnow
+
+        save()
+    }
+
+    private func createRoad(roadViewModel: RoadMultiPickerViewModel) -> RoadType {
+        let road = RoadType(context: moc)
+
+        editRoad(road: road, roadViewModel: roadViewModel)
+
+        return road
+    }
+
+    private func editRoad(road: RoadType, roadViewModel: RoadMultiPickerViewModel) {
+        road.city = roadViewModel.city
+        road.highway = roadViewModel.highway
+        road.multilane = roadViewModel.multilane
+        road.residential = roadViewModel.residential
+        road.roundabout = roadViewModel.roundabout
+        road.rural = roadViewModel.rural
+
+        save()
+    }
+
     func getTotalSeconds() -> Int {
         var totalSeconds: Int32 = 0
         
@@ -99,18 +176,18 @@ class DrivesDataModel: ObservableObject {
     }
     
     func getTotalMinutes() -> Int {
-        return TimeConverter().getMinutes(from: getTotalSeconds())
+        return TimeConverter.getMinutes(from: getTotalSeconds())
     }
     
     func getTotalHours() -> Int {
-        return TimeConverter().getHours(from: getTotalSeconds())
+        return TimeConverter.getHours(from: getTotalSeconds())
     }
     
     func getTotalNightMinutes() -> Int {
-        return TimeConverter().getMinutes(from: getTotalNightSeconds())
+        return TimeConverter.getMinutes(from: getTotalNightSeconds())
     }
     
     func getTotalNightHours() -> Int {
-        return TimeConverter().getHours(from: getTotalNightSeconds())
+        return TimeConverter.getHours(from: getTotalNightSeconds())
     }
 }

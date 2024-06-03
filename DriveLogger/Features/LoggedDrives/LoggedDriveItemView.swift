@@ -10,13 +10,13 @@ import SwiftUI
 struct LoggedDriveItemView: View {
     @ObservedObject var drive: Drive
     var body: some View {
-        NavigationLink(destination: AddDriveView(drive: drive)) {
+        NavigationLink(destination: DriveDetailView(viewModel: DriveDetailViewModel(drive: drive))) {
             VStack(alignment: .leading, spacing: 6) {
                 Text(drive.name ?? "")
                     .bold()
                     .accessibilityIdentifier("DriveElementName")
 
-                Text("\(TimeConverter().getHours(from: Int(drive.dayDuration + drive.nightDuration)))hrs  \(TimeConverter().getMinutes(from: Int(drive.dayDuration + drive.nightDuration)))mins")
+                Text("\(TimeConverter.getHours(from: Int(drive.dayDuration + drive.nightDuration)))hrs  \(TimeConverter.getMinutes(from: Int(drive.dayDuration + drive.nightDuration)))mins")
                     .accessibilityIdentifier("DriveElementTime")
             }
         }

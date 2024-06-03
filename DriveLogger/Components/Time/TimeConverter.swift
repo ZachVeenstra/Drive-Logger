@@ -5,29 +5,27 @@
 //  Created by Zach Veenstra on 12/5/23.
 //
 
-import Foundation
+struct TimeConverter {
+    static private let secondsInHour: Int = 3600
+    static private let secondsInMinute: Int = 60
 
-class TimeConverter {
-    private let secondsInHour: Int = 3600
-    private let secondsInMinute: Int = 60
-    
-    func getSeconds(from seconds: Int) -> Int {
+    static func getSeconds(from seconds: Int) -> Int {
         return seconds % secondsInMinute
     }
     
-    func getMinutes(from seconds: Int) -> Int {
+    static func getMinutes(from seconds: Int) -> Int {
         return seconds % secondsInHour / secondsInMinute
     }
     
-    func getHours(from seconds: Int) -> Int {
+    static func getHours(from seconds: Int) -> Int {
         return seconds / secondsInHour
     }
     
-    func hoursToSeconds(from hours: Int) -> Int {
+    static func hoursToSeconds(from hours: Int) -> Int {
         return hours * secondsInHour
     }
     
-    func minutesToSeconds(from minutes: Int) -> Int {
+    static func minutesToSeconds(from minutes: Int) -> Int {
         return minutes * secondsInMinute
     }
 }
