@@ -10,9 +10,9 @@ import SwiftUI
 struct ActionButtonStyle: ButtonStyle {
     
     private let cornerRadius: Double = 10
-    private let pressedScale: Double = 1.2
+    private let pressedScale: Double = 1.05
     private let unpressedScale: Double = 1
-    private let animationLength: Double = 0.17
+    private let animationLength: Double = 0.075
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
@@ -24,7 +24,7 @@ struct ActionButtonStyle: ButtonStyle {
             .background(.actionButton)
             .cornerRadius(cornerRadius)
             .scaleEffect(configuration.isPressed ? pressedScale : unpressedScale)
-            .animation(.easeIn(duration: animationLength), value: configuration.isPressed)
+            .animation(.easeOut(duration: animationLength), value: configuration.isPressed)
     }
 }
 
