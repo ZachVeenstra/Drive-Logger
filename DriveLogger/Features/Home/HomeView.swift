@@ -76,7 +76,7 @@ struct HomeView: View {
     
     private var buttonSection: some View {
         VStack {
-            NavigationLink(destination: DriveView()) {
+            NavigationLink(destination: DriveView(driveViewModel: DriveViewModel())) {
                 Text("Start Drive")
             }
             .buttonStyle(ActionButtonStyle())
