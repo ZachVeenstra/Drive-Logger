@@ -10,6 +10,7 @@ import SwiftUI
 struct MultipleSelectionItem: View {
     var title: String
     var imageResource: String
+    var selected: Bool
     var action: () -> Void
 
     var body: some View {
@@ -21,18 +22,21 @@ struct MultipleSelectionItem: View {
             VStack {
                 Image(imageResource)
                     .font(.largeTitle)
+                    .foregroundColor(selected ? .selected : .accent) // Change color when selected
                 Text(title)
                     .font(.subheadline)
+                    .foregroundColor(selected ? .selected : .accent) // Change color when selected
             }
         }
-        .contentTransition(.symbolEffect(.replace))
         .buttonStyle(BorderlessButtonStyle())
     }
 }
 
+
 #Preview {
     MultipleSelectionItem(title: RoadTypes.city.description,
-                          imageResource: RoadTypes.city.symbol,
+                          imageResource: RoadTypes.city.symbol, 
+                          selected: true,
                           action: { }
     )
 }

@@ -12,17 +12,18 @@ struct WeatherMultiPicker: View {
     let columns = [
         GridItem(.flexible(), spacing: -40),
         GridItem(.flexible(), spacing: -40),
-        GridItem(.flexible(), spacing: -40),
         GridItem(.flexible(), spacing: -40)
     ]
 
     var body: some View {
         LazyVGrid(columns: columns, spacing: 0) {
-            ForEach(viewModel.options) { option in
+            ForEach(viewModel.options, id: \.self) { option in
                 let imageResource = viewModel.getImageResource(for: option)
+                let isSelected = viewModel.isOptionSelected(option: option)
 
                 MultipleSelectionItem(title: option.description,
-                                      imageResource: imageResource
+                                      imageResource: imageResource,
+                                      selected: isSelected
                 ) {
                     viewModel.toggleOption(option: option)
                 }

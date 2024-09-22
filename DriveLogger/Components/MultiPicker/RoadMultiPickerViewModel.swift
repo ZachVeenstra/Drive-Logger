@@ -68,4 +68,21 @@ class RoadMultiPickerViewModel: ObservableObject {
             self.rural.toggle()
         }
     }
+    
+    func isOptionSelected(option: RoadTypes) -> Bool {
+        switch option {
+        case .city:
+            return city
+        case .highway:
+            return highway
+        case .multilane:
+            return multilane
+        case .residential:
+            return residential
+        case .roundabout:
+            return roundabout
+        case .rural:
+            return rural
+        }
+    }
 }

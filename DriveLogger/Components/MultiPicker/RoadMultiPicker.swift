@@ -17,11 +17,13 @@ struct RoadMultiPicker: View {
 
     var body: some View {
         LazyVGrid(columns: columns, spacing: 0) {
-            ForEach(viewModel.options) { option in
+            ForEach(viewModel.options, id: \.self) { option in
                 let imageResource = viewModel.getImageResource(for: option)
+                let isSelected = viewModel.isOptionSelected(option: option)
 
-                MultipleSelectionItem(title: option.description, 
-                                      imageResource: imageResource
+                MultipleSelectionItem(title: option.description,
+                                      imageResource: imageResource,
+                                      selected: isSelected
                 ) {
                     viewModel.toggleOption(option: option)
                 }

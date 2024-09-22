@@ -104,7 +104,7 @@ struct CircleProgressView: View {
                 if let symbolName = symbolName {
                     Image(systemName: symbolName)
                         .font(.system(size: circleSize * symbolSizeFactor))
-                        .foregroundColor(.white)
+                        .foregroundStyle(.white)
                         .offset(y: -symbolOffset)
                 }
             }

@@ -47,4 +47,15 @@ class WeatherMultiPickerViewModel: ObservableObject {
             self.isSnow.toggle()
         }
     }
+    
+    func isOptionSelected(option: WeatherTypes) -> Bool {
+        switch option {
+        case .clear:
+            return isClear
+        case .rain:
+            return isRain
+        case .snow:
+            return isSnow
+        }
+    }
 }
