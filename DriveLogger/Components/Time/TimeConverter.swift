@@ -6,8 +6,8 @@
 //
 
 struct TimeConverter {
-    static private let secondsInHour: Int = 3600
-    static private let secondsInMinute: Int = 60
+    static let secondsInHour: Int = 3600
+    static let secondsInMinute: Int = 60
 
     static func getSeconds(from seconds: Int) -> Int {
         return seconds % secondsInMinute
