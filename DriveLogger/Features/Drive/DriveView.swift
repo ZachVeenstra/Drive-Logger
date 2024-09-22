@@ -10,8 +10,8 @@ import SwiftUI
 struct DriveView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var drivesDataModel: DrivesDataModel
-    @StateObject private var driveViewModel = DriveViewModel()
-    
+    @StateObject var driveViewModel: DriveViewModel
+
     var body: some View {
         VStack(spacing: 100) {
             Text(driveViewModel.startTime, style: .relative)
@@ -35,7 +35,7 @@ struct DriveView_Previews: PreviewProvider {
     static let moc = DataController.shared.container.viewContext
     
     static var previews: some View {
-        DriveView()
+        DriveView(driveViewModel: DriveViewModel())
             .environmentObject(DrivesDataModel(moc: moc))
     }
 }

@@ -17,6 +17,15 @@ struct DriveShortcuts: AppShortcutsProvider {
                         "Begin \(.applicationName)"
                     ],
                     shortTitle: "Start Drive",
+                    systemImageName: "car")
+        AppShortcut(intent: EndDriveIntent(),
+                    phrases: [
+                       "End \(.applicationName)",
+                       "End my \(.applicationName)",
+                       "Stop \(.applicationName)",
+                       "Stop my \(.applicationName)"
+                    ],
+                    shortTitle: "End Drive",
                     systemImageName: "car.fill")
     }
 }

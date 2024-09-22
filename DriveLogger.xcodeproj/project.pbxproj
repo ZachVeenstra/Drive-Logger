@@ -21,6 +21,12 @@
 		9223AF182C08F63100F6476E /* RoadMultiPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929CD2282C06ED02009C0956 /* RoadMultiPickerViewModel.swift */; };
 		9223AF1A2C0BA2D400F6476E /* WeatherMultiPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9223AF192C0BA2D300F6476E /* WeatherMultiPickerViewModel.swift */; };
 		9223AF1B2C0BA2D400F6476E /* WeatherMultiPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9223AF192C0BA2D300F6476E /* WeatherMultiPickerViewModel.swift */; };
+		9223AF1D2C0E271300F6476E /* EndDriveIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9223AF1C2C0E271300F6476E /* EndDriveIntent.swift */; };
+		9223AF1E2C0E271300F6476E /* EndDriveIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9223AF1C2C0E271300F6476E /* EndDriveIntent.swift */; };
+		9223AF1F2C0E309C00F6476E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AE9FDB2BFC382D00776885 /* LocationManager.swift */; };
+		9223AF202C0E30B600F6476E /* DriveLoggerWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920FBEE42BE9334F00220584 /* DriveLoggerWidgetLiveActivity.swift */; };
+		9223AF212C0F8F6600F6476E /* DriveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929253682B1BB06700CB0988 /* DriveViewModel.swift */; };
+		9223AF222C0F92E800F6476E /* DriveLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AE9FD62BFC30B700776885 /* DriveLiveActivity.swift */; };
 		92244B832B1FEDF700BE5D80 /* LoggedDriveItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92244B822B1FEDF700BE5D80 /* LoggedDriveItemView.swift */; };
 		92244B862B20007600BE5D80 /* TimeConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92244B852B20007600BE5D80 /* TimeConverter.swift */; };
 		922FB8B12C9E4CDC00E94C9B /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922FB8B02C9E4CDC00E94C9B /* CircleProgressView.swift */; };
@@ -143,6 +149,7 @@
 		921C1D6F2928334C00FCC373 /* DriveLoggerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DriveLoggerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		921C1D752928334C00FCC373 /* DriveLoggerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveLoggerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9223AF192C0BA2D300F6476E /* WeatherMultiPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMultiPickerViewModel.swift; sourceTree = "<group>"; };
+		9223AF1C2C0E271300F6476E /* EndDriveIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndDriveIntent.swift; sourceTree = "<group>"; };
 		92244B822B1FEDF700BE5D80 /* LoggedDriveItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedDriveItemView.swift; sourceTree = "<group>"; };
 		92244B852B20007600BE5D80 /* TimeConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeConverter.swift; sourceTree = "<group>"; };
 		922FB8B02C9E4CDC00E94C9B /* CircleProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
@@ -387,6 +394,7 @@
 			isa = PBXGroup;
 			children = (
 				92A5B2702C024A9C0071E415 /* StartDriveIntent.swift */,
+				9223AF1C2C0E271300F6476E /* EndDriveIntent.swift */,
 			);
 			path = Intents;
 			sourceTree = "<group>";
@@ -449,10 +457,10 @@
 			children = (
 				923615D5292E9E010097B9B1 /* DriveView.swift */,
 				929253682B1BB06700CB0988 /* DriveViewModel.swift */,
-				92692EF7293BD915008D38C7 /* DriveDetailView.swift */,
-				92C5F6342C04380000371CC0 /* DriveDetailViewModel.swift */,
 				92AE9FD62BFC30B700776885 /* DriveLiveActivity.swift */,
 				92AE9FD82BFC316E00776885 /* DriveServices.swift */,
+				92692EF7293BD915008D38C7 /* DriveDetailView.swift */,
+				92C5F6342C04380000371CC0 /* DriveDetailViewModel.swift */,
 			);
 			path = Drive;
 			sourceTree = "<group>";
@@ -667,6 +675,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9223AF1D2C0E271300F6476E /* EndDriveIntent.swift in Sources */,
 				9263EB1A294001A300AC8EC3 /* LoggedDrivesView.swift in Sources */,
 				927E86072B167E6D0038E4AD /* ActionButtonStyle.swift in Sources */,
 				929CD2272C06E19F009C0956 /* RoadMultiPicker.swift in Sources */,
@@ -729,13 +738,18 @@
 			files = (
 				92C5F6392C0642CA00371CC0 /* WeatherTypes.swift in Sources */,
 				92A5B2742C024AA60071E415 /* DrivesDataModel.swift in Sources */,
+				9223AF222C0F92E800F6476E /* DriveLiveActivity.swift in Sources */,
 				92A5B2752C024ABA0071E415 /* DriveModel.xcdatamodeld in Sources */,
 				92A5B2842C02E9A40071E415 /* BackgroundDrivesDataModel.swift in Sources */,
+				9223AF1E2C0E271300F6476E /* EndDriveIntent.swift in Sources */,
+				9223AF212C0F8F6600F6476E /* DriveViewModel.swift in Sources */,
 				92A5B2732C024AA30071E415 /* DataController.swift in Sources */,
 				9223AF182C08F63100F6476E /* RoadMultiPickerViewModel.swift in Sources */,
 				92A5B2642C0246150071E415 /* DriveLoggerAppIntentsExtension.swift in Sources */,
 				9223AF1B2C0BA2D400F6476E /* WeatherMultiPickerViewModel.swift in Sources */,
 				92A5B27E2C024CE30071E415 /* DriveShortcuts.swift in Sources */,
+				9223AF202C0E30B600F6476E /* DriveLoggerWidgetLiveActivity.swift in Sources */,
+				9223AF1F2C0E309C00F6476E /* LocationManager.swift in Sources */,
 				92C5F63C2C06434500371CC0 /* RoadTypes.swift in Sources */,
 				92A5B2722C024A9C0071E415 /* StartDriveIntent.swift in Sources */,
 				92A5B2762C024AC60071E415 /* TimeConverter.swift in Sources */,

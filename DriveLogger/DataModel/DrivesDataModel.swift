@@ -13,6 +13,7 @@ class DrivesDataModel: ObservableObject {
     let moc: NSManagedObjectContext
     
     @Published var drives: [Drive] = []
+    @Published var driveInProgress: Drive? = nil
 
     init(moc: NSManagedObjectContext) {
         self.moc = moc
@@ -76,7 +77,61 @@ class DrivesDataModel: ObservableObject {
 
         drives.append(drive)
     }
-    
+
+    func createBackgroundDrive(date: Date, name: String, dayDuration: Int32, nightDuration: Int32, distance: Double, weatherViewModel: WeatherMultiPickerViewModel, roadViewModel: RoadMultiPickerViewModel, notes: String) {
+        if driveInProgress != nil {
+            print("A drive is already in progrss!")
+            return
+        }
+        let drive = Drive(context: moc)
+        drive.id = UUID()
+        drive.weather = createWeather(weatherViewModel: weatherViewModel)
+        drive.road = createRoad(roadViewModel: roadViewModel)
+
+        editDrive(drive: drive,
+                  date: date,
+                  name: name,
+                  dayDuration: dayDuration,
+                  nightDuration: nightDuration,
+                  distance: distance,
+                  weatherViewModel: weatherViewModel,
+                  roadViewModel: roadViewModel,
+                  notes: notes)
+
+        driveInProgress = drive
+    }
+
+    func endBackgroundDrive(drive: Drive, date: Date, name: String, dayDuration: Int32, nightDuration: Int32, distance: Double, weatherViewModel: WeatherMultiPickerViewModel, roadViewModel: RoadMultiPickerViewModel, notes: String) {
+
+        if driveInProgress == nil {
+            print("No drive was started...")
+            return
+        }
+        
+        drive.date = date
+        drive.name = name
+        drive.dayDuration = dayDuration
+        drive.nightDuration = nightDuration
+        drive.distance = distance
+        drive.notes = notes
+
+        if let weather = drive.weather {
+            editWeather(weather: weather, weatherViewModel: weatherViewModel)
+        } else {
+            drive.weather = createWeather(weatherViewModel: weatherViewModel)
+        }
+
+        if let road = drive.road {
+            editRoad(road: road, roadViewModel: roadViewModel)
+        } else {
+            drive.road = createRoad(roadViewModel: roadViewModel)
+        }
+
+        drives.append(drive)
+        self.driveInProgress = nil
+        save()
+    }
+
     func editDrive(drive: Drive, date: Date, name: String, dayDuration: Int32, nightDuration: Int32, distance: Double, weatherViewModel: WeatherMultiPickerViewModel, roadViewModel: RoadMultiPickerViewModel, notes: String) {
         drive.date = date
         drive.name = name
