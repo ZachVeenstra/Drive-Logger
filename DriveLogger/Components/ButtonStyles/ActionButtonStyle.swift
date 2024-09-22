@@ -12,7 +12,7 @@ struct ActionButtonStyle: ButtonStyle {
     private let cornerRadius: Double = 10
     private let pressedScale: Double = 1.05
     private let unpressedScale: Double = 1
-    private let animationLength: Double = 0.075
+    private let animationLength: Double = 0.05
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
@@ -21,7 +21,7 @@ struct ActionButtonStyle: ButtonStyle {
             .foregroundColor(.white)
             .font(.title2)
             .fontWeight(.heavy)
-            .background(.actionButton)
+            .background(configuration.isPressed ? .actionButtonPressed : .actionButton)
             .cornerRadius(cornerRadius)
             .scaleEffect(configuration.isPressed ? pressedScale : unpressedScale)
             .animation(.easeOut(duration: animationLength), value: configuration.isPressed)

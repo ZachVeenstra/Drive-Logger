@@ -3,8 +3,8 @@ import CoreData
 
 struct HomeView: View {
     @EnvironmentObject private var drivesDataModel: DrivesDataModel
-    @State private var totalProgress: Double  = 0
-    @State private var nightProgress: Double  = 0
+    @State private var totalProgress: Double = 0
+    @State private var nightProgress: Double = 0
 
     var body: some View {
         NavigationStack {
@@ -31,8 +31,11 @@ struct HomeView: View {
                 .padding()
                 .position(x: geometry.frame(in: .local).midX, y: geometry.frame(in: .local).midY)
                 .onAppear {
-                    totalProgress = Double(drivesDataModel.getTotalSeconds()) / Double(50 * TimeConverter.secondsInHour)
-                    nightProgress = Double(drivesDataModel.getTotalNightSeconds()) / Double(10 * TimeConverter.secondsInHour)
+                    let userTotalGoal: Double = Double(UserDefaults.standard.totalTimeGoal * TimeConverter.secondsInHour)
+                    let userNightGoal: Double = Double(UserDefaults.standard.nightTimeGoal * TimeConverter.secondsInHour)
+                    
+                    totalProgress = Double(drivesDataModel.getTotalSeconds()) / userTotalGoal
+                    nightProgress = Double(drivesDataModel.getTotalNightSeconds()) / userNightGoal
                 }
             }
             .navigationTitle("Drive-Logger")
@@ -40,18 +43,16 @@ struct HomeView: View {
         }
     }
 
-    // Extract the ProgressCard as a separate view for reuse
     private var progressCardSection: some View {
         ProgressCard(totalProgress: totalProgress, nightProgress: nightProgress)
             .padding()
     }
 
-    // Extract the time view as a separate view for reuse
     private var timeViewSection: some View {
         VStack {
             HStack {
                 Image(systemName: "car.fill")
-                    .foregroundStyle(totalProgress >= 1 ? .green : .yellow)
+                    .foregroundStyle(totalProgress >= 1 ? .completed : .totalProgress)
                     .frame(width: 50)
                 
                 Text("\(drivesDataModel.getTotalHours())hrs  \(drivesDataModel.getTotalMinutes())mins")
@@ -60,7 +61,7 @@ struct HomeView: View {
 
             HStack {
                 Image(systemName: "moon.fill")
-                    .foregroundStyle(totalProgress >= 1 ? .green : .accentColor)
+                    .foregroundStyle(nightProgress >= 1 ? .completed : .nightProgress)
                     .frame(width: 50)
                 
                 Text("\(drivesDataModel.getTotalNightHours())hrs  \(drivesDataModel.getTotalNightMinutes())mins")
@@ -85,14 +86,5 @@ struct HomeView: View {
             }
             .buttonStyle(ActionButtonStyle())
         }
-    }
-}
-
-struct HomeView_Previews: PreviewProvider {
-    static let moc = DataController.shared.container.viewContext
-    
-    static var previews: some View {
-        HomeView()
-            .environmentObject(DrivesDataModel(moc: moc))
     }
 }

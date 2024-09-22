@@ -38,6 +38,8 @@ class DataController: ObservableObject {
         }
         container.viewContext.automaticallyMergesChangesFromParent = true
         container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        
+        UserDefaults.setDefault()
     }
 }
 
@@ -48,5 +50,40 @@ public extension URL {
         }
 
         return fileContainer.appendingPathComponent("\(databaseName).sqlite")
+    }
+}
+
+extension UserDefaults {
+    private enum Keys {
+        static let totalTimeGoalHours = "totalTimeGoalHours"
+        static let nightTimeGoalHours = "nightTimeGoalHours"
+    }
+    
+    static func setDefault() -> Void {
+        let defaultTotalTimeGoal: Int = 50
+        let defaultNightTimeGoal: Int = 10
+        
+        UserDefaults.standard.register(defaults: [
+            UserDefaults.Keys.totalTimeGoalHours: defaultTotalTimeGoal,
+            UserDefaults.Keys.nightTimeGoalHours: defaultNightTimeGoal
+        ])
+    }
+
+    var totalTimeGoal: Int {
+        get {
+            return integer(forKey: Keys.totalTimeGoalHours)
+        }
+        set {
+            set(newValue, forKey: Keys.totalTimeGoalHours)
+        }
+    }
+
+    var nightTimeGoal: Int {
+        get {
+            return integer(forKey: Keys.nightTimeGoalHours)
+        }
+        set {
+            set(newValue, forKey: Keys.nightTimeGoalHours)
+        }
     }
 }

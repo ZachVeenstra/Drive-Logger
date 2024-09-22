@@ -11,7 +11,7 @@ struct ProgressCard: View {
     let totalProgress: Double
     let nightProgress: Double
     let innerRatio: Double = 0.53
-    let outerRatio: Double = 0.17
+    let outerRatio: Double = 0.82
     
     var body: some View {
         VStack {
@@ -19,12 +19,12 @@ struct ProgressCard: View {
                 GeometryReader { geometry in
                     let outerCircleSize = min(geometry.size.width, geometry.size.height)
                     
-                    CircleProgressView(progress: nightProgress, symbolName: "moon.fill")
+                    CircleProgressView(progress: nightProgress, color: .nightProgress, symbolName: "moon.fill")
                         .frame(width: outerCircleSize * innerRatio, height: outerCircleSize * innerRatio)
                         .position(x: geometry.frame(in: .local).midX, y: geometry.frame(in: .local).midY)
                     
-                    CircleProgressView(progress: totalProgress, color: .yellow, symbolName: "car.fill")
-                        .frame(width: outerCircleSize - outerCircleSize * outerRatio, height:  outerCircleSize - outerCircleSize * outerRatio)
+                    CircleProgressView(progress: totalProgress, color: .totalProgress, symbolName: "car.fill")
+                        .frame(width: outerCircleSize * outerRatio, height:  outerCircleSize * outerRatio)
                         .position(x: geometry.frame(in: .local).midX, y: geometry.frame(in: .local).midY)
                 }
             }
